@@ -17,9 +17,31 @@ body{
     font-family: 'Space Grotesk', sans-serif;
 }
 
+.site-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.site-stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
 header {
+    position: relative;
+    z-index: 1;
     width: 100%;
     padding: 30px 60px;
+}
+
+main {
+    position: relative;
+    z-index: 1;
 }
 
 nav {
@@ -80,15 +102,6 @@ nav a:hover::after {
     padding: 60px;
 }
 
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
 .parallax-layer {
     transition: transform 0.2s ease-out;
 }
@@ -122,11 +135,11 @@ nav a:hover::after {
     50% { opacity: 0.65; transform: translateX(-50%) scale(1.06); }
 }
 
-.hero-star {
+.site-star {
     fill: #ffffff;
 }
 
-.hero-star-twinkle {
+.site-star-twinkle {
     animation: star-twinkle ease-in-out infinite;
 }
 
@@ -135,14 +148,14 @@ nav a:hover::after {
     50% { opacity: 0.1; }
 }
 
-.hero-float-icons {
+.site-float-icons {
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
 }
 
-.hero-float-icon {
+.site-float-icon {
     position: absolute;
     opacity: 0.2;
     filter: drop-shadow(0 0 6px rgba(157, 78, 221, 0.35));
@@ -158,8 +171,8 @@ nav a:hover::after {
 
 @media (prefers-reduced-motion: reduce) {
     .hero-wormhole,
-    .hero-star-twinkle,
-    .hero-float-icon {
+    .site-star-twinkle,
+    .site-float-icon {
         animation: none;
     }
 }

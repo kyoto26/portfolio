@@ -1,7 +1,7 @@
 (function () {
     const SVG_NS = 'http://www.w3.org/2000/svg';
-    const staticGroup = document.getElementById('heroStarsStatic');
-    const twinkleGroup = document.getElementById('heroStarsTwinkle');
+    const staticGroup = document.getElementById('siteStarsStatic');
+    const twinkleGroup = document.getElementById('siteStarsTwinkle');
 
     if (!staticGroup || !twinkleGroup) return;
 
@@ -14,14 +14,14 @@
     function makeStar(group, { twinkle }) {
         const circle = document.createElementNS(SVG_NS, 'circle');
         circle.setAttribute('cx', randomBetween(0, 1600).toFixed(1));
-        circle.setAttribute('cy', randomBetween(0, 900).toFixed(1));
+        circle.setAttribute('cy', randomBetween(0, 1000).toFixed(1));
         circle.setAttribute('r', randomBetween(0.5, 2).toFixed(2));
-        circle.classList.add('hero-star');
+        circle.classList.add('site-star');
 
         const baseOpacity = randomBetween(0.15, 0.6);
 
         if (twinkle && !reduceMotion) {
-            circle.classList.add('hero-star-twinkle');
+            circle.classList.add('site-star-twinkle');
             circle.style.setProperty('--star-opacity', baseOpacity.toFixed(2));
             circle.style.animationDuration = `${randomBetween(2.5, 5).toFixed(1)}s`;
             circle.style.animationDelay = `-${randomBetween(0, 5).toFixed(1)}s`;
@@ -32,15 +32,14 @@
         group.appendChild(circle);
     }
 
-    for (let i = 0; i < 45; i++) makeStar(staticGroup, { twinkle: false });
-    for (let i = 0; i < 15; i++) makeStar(twinkleGroup, { twinkle: true });
+    for (let i = 0; i < 65; i++) makeStar(staticGroup, { twinkle: false });
+    for (let i = 0; i < 20; i++) makeStar(twinkleGroup, { twinkle: true });
 })();
 
 (function () {
-    const hero = document.querySelector('.hero');
     const layers = document.querySelectorAll('.parallax-layer');
 
-    if (!hero || !layers.length) return;
+    if (!layers.length) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
@@ -59,14 +58,13 @@
         });
     }
 
-    hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        mouseX = e.clientX - rect.left - rect.width / 2;
-        mouseY = e.clientY - rect.top - rect.height / 2;
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX - window.innerWidth / 2;
+        mouseY = e.clientY - window.innerHeight / 2;
         updateLayers();
     });
 
-    hero.addEventListener('mouseleave', () => {
+    document.addEventListener('mouseleave', () => {
         mouseX = 0;
         mouseY = 0;
         updateLayers();
