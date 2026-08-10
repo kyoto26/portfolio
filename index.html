@@ -32,26 +32,22 @@
 </header>
 <main>
     <section class="hero" id="home">
+        <div class="hero-wormhole" aria-hidden="true"></div>
+
         <svg class="hero-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g class="parallax-layer" data-depth="0.015">
-                <circle cx="80" cy="60" r="2.5" fill="#ffffff" opacity="0.12"/>
-                <circle cx="620" cy="40" r="2" fill="#ffffff" opacity="0.12"/>
-                <circle cx="60" cy="760" r="3" fill="#ffffff" opacity="0.12"/>
-                <circle cx="1540" cy="120" r="2.5" fill="#ffffff" opacity="0.12"/>
-            </g>
-            <g class="parallax-layer" data-depth="0.035">
-                <circle cx="150" cy="140" r="30" fill="none" stroke="#e10600" stroke-width="1" opacity="0.09"/>
-                <circle cx="760" cy="70" r="18" fill="none" stroke="#e10600" stroke-width="1" opacity="0.1"/>
-                <circle cx="90" cy="650" r="40" fill="none" stroke="#e10600" stroke-width="1" opacity="0.08"/>
-                <path d="M1415 75 l10 10 M1425 75 l-10 10" stroke="#e10600" stroke-width="1" opacity="0.1"/>
-                <path d="M135 815 l10 10 M145 815 l-10 10" stroke="#e10600" stroke-width="1" opacity="0.1"/>
-            </g>
-            <g class="parallax-layer" data-depth="0.06">
-                <line x1="1320" y1="720" x2="1450" y2="850" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
-                <line x1="40" y1="300" x2="170" y2="420" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
-                <circle cx="1500" cy="650" r="60" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
-            </g>
+            <g class="parallax-layer hero-stars" data-depth="0.015" id="heroStarsStatic"></g>
+            <g class="parallax-layer hero-stars" data-depth="0.03" id="heroStarsTwinkle"></g>
         </svg>
+
+        <div class="hero-float-icons" aria-hidden="true">
+            <div class="hero-float-icon parallax-layer" data-depth="0.02" style="top: 8%; left: 5%; animation-delay: -1.5s; animation-duration: 7s; font-size: 30px;"><i class="devicon-react-original colored"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.03" style="top: 66%; left: 7%; animation-delay: -3.2s; animation-duration: 8s; font-size: 24px;"><i class="devicon-javascript-plain colored"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.025" style="top: 13%; right: 8%; animation-delay: -0.8s; animation-duration: 6.5s; font-size: 26px;"><i class="devicon-nextjs-plain"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.02" style="top: 78%; right: 11%; animation-delay: -4.5s; animation-duration: 7.5s; font-size: 28px;"><i class="devicon-nestjs-plain colored"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.035" style="top: 44%; left: 2.5%; animation-delay: -2.1s; animation-duration: 6.8s; font-size: 22px;"><i class="devicon-postgresql-plain colored"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.02" style="top: 88%; left: 40%; animation-delay: -5.3s; animation-duration: 7.2s; font-size: 24px;"><i class="devicon-docker-plain colored"></i></div>
+            <div class="hero-float-icon parallax-layer" data-depth="0.03" style="top: 22%; right: 24%; animation-delay: -3.8s; animation-duration: 8.2s; font-size: 26px;"><i class="devicon-python-plain colored"></i></div>
+        </div>
 
         <div class="hero-content">
             <p class="eyebrow">SOFTWARE DEVELOPER</p>

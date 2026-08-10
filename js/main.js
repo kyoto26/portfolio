@@ -1,4 +1,42 @@
 (function () {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const staticGroup = document.getElementById('heroStarsStatic');
+    const twinkleGroup = document.getElementById('heroStarsTwinkle');
+
+    if (!staticGroup || !twinkleGroup) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function randomBetween(min, max) {
+        return min + Math.random() * (max - min);
+    }
+
+    function makeStar(group, { twinkle }) {
+        const circle = document.createElementNS(SVG_NS, 'circle');
+        circle.setAttribute('cx', randomBetween(0, 1600).toFixed(1));
+        circle.setAttribute('cy', randomBetween(0, 900).toFixed(1));
+        circle.setAttribute('r', randomBetween(0.5, 2).toFixed(2));
+        circle.classList.add('hero-star');
+
+        const baseOpacity = randomBetween(0.15, 0.6);
+
+        if (twinkle && !reduceMotion) {
+            circle.classList.add('hero-star-twinkle');
+            circle.style.setProperty('--star-opacity', baseOpacity.toFixed(2));
+            circle.style.animationDuration = `${randomBetween(2.5, 5).toFixed(1)}s`;
+            circle.style.animationDelay = `-${randomBetween(0, 5).toFixed(1)}s`;
+        } else {
+            circle.setAttribute('opacity', baseOpacity.toFixed(2));
+        }
+
+        group.appendChild(circle);
+    }
+
+    for (let i = 0; i < 45; i++) makeStar(staticGroup, { twinkle: false });
+    for (let i = 0; i < 15; i++) makeStar(twinkleGroup, { twinkle: true });
+})();
+
+(function () {
     const hero = document.querySelector('.hero');
     const layers = document.querySelectorAll('.parallax-layer');
 
