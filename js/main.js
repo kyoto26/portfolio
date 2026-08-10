@@ -44,3 +44,30 @@
         }
     });
 })();
+
+(function () {
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach((card) => {
+        const trigger = card.querySelector('.project-card-trigger');
+        const collapseBtn = card.querySelector('.project-card-collapse');
+
+        if (!trigger) return;
+
+        function setExpanded(expand) {
+            card.classList.toggle('is-expanded', expand);
+            trigger.setAttribute('aria-expanded', String(expand));
+        }
+
+        trigger.addEventListener('click', () => {
+            setExpanded(!card.classList.contains('is-expanded'));
+        });
+
+        if (collapseBtn) {
+            collapseBtn.addEventListener('click', () => {
+                setExpanded(false);
+                trigger.focus();
+            });
+        }
+    });
+})();
