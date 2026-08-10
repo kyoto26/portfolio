@@ -159,6 +159,14 @@ nav a:hover::after {
     position: absolute;
     opacity: 0.2;
     filter: drop-shadow(0 0 6px rgba(157, 78, 221, 0.35));
+}
+
+.site-float-icon-drift {
+    display: block;
+}
+
+.site-float-icon i {
+    display: block;
     animation-name: icon-float;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
@@ -172,7 +180,7 @@ nav a:hover::after {
 @media (prefers-reduced-motion: reduce) {
     .hero-wormhole,
     .site-star-twinkle,
-    .site-float-icon {
+    .site-float-icon i {
         animation: none;
     }
 }

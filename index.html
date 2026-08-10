@@ -14,28 +14,28 @@
 
 <body>
 <div class="site-backdrop" aria-hidden="true">
-    <svg class="site-stars" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+    <svg class="site-stars" id="siteStars" preserveAspectRatio="xMidYMid slice">
         <g class="parallax-layer" data-depth="0.015" id="siteStarsStatic"></g>
         <g class="parallax-layer" data-depth="0.03" id="siteStarsTwinkle"></g>
     </svg>
 
     <div class="site-float-icons">
-        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 18%; left: 14%; animation-delay: -1.2s; animation-duration: 7.4s; font-size: 22px;"><i class="devicon-html5-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 32%; left: 1.5%; animation-delay: -4.1s; animation-duration: 6.6s; font-size: 20px;"><i class="devicon-css3-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 66%; left: 7%; animation-delay: -3.2s; animation-duration: 8s; font-size: 24px;"><i class="devicon-javascript-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 16%; left: 5%; animation-delay: -1.5s; animation-duration: 7s; font-size: 30px;"><i class="devicon-react-original colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 17%; right: 8%; animation-delay: -0.8s; animation-duration: 6.5s; font-size: 26px;"><i class="devicon-nextjs-plain"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 78%; right: 11%; animation-delay: -4.5s; animation-duration: 7.5s; font-size: 28px;"><i class="devicon-nestjs-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 50%; right: 3%; animation-delay: -2.6s; animation-duration: 7.8s; font-size: 22px;"><i class="devicon-fastapi-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.015" style="top: 92%; right: 20%; animation-delay: -5.8s; animation-duration: 6.9s; font-size: 24px;"><i class="devicon-nodejs-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 22%; right: 24%; animation-delay: -3.8s; animation-duration: 8.2s; font-size: 26px;"><i class="devicon-python-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.035" style="top: 44%; left: 1%; animation-delay: -2.1s; animation-duration: 6.8s; font-size: 22px;"><i class="devicon-postgresql-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 88%; left: 40%; animation-delay: -5.3s; animation-duration: 7.2s; font-size: 24px;"><i class="devicon-docker-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 60%; left: 32%; animation-delay: -0.4s; animation-duration: 7.6s; font-size: 20px;"><i class="devicon-git-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.015" style="top: 18%; right: 30%; animation-delay: -3.5s; animation-duration: 6.4s; font-size: 22px;"><i class="devicon-github-original"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 95%; left: 60%; animation-delay: -1.9s; animation-duration: 7.1s; font-size: 22px;"><i class="devicon-vscode-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 36%; right: 14%; animation-delay: -4.7s; animation-duration: 8.4s; font-size: 24px;"><i class="devicon-c-plain colored"></i></div>
-        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 70%; right: 38%; animation-delay: -2.9s; animation-duration: 7.3s; font-size: 22px;"><i class="devicon-racket-plain colored"></i></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 18%; left: 14%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-html5-plain colored" style="animation-delay: -1.2s; animation-duration: 7.4s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 32%; left: 1.5%; font-size: 20px;"><div class="site-float-icon-drift"><i class="devicon-css3-plain colored" style="animation-delay: -4.1s; animation-duration: 6.6s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 66%; left: 7%; font-size: 24px;"><div class="site-float-icon-drift"><i class="devicon-javascript-plain colored" style="animation-delay: -3.2s; animation-duration: 8s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 16%; left: 5%; font-size: 30px;"><div class="site-float-icon-drift"><i class="devicon-react-original colored" style="animation-delay: -1.5s; animation-duration: 7s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 17%; right: 8%; font-size: 26px;"><div class="site-float-icon-drift"><i class="devicon-nextjs-plain" style="animation-delay: -0.8s; animation-duration: 6.5s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 78%; right: 11%; font-size: 28px;"><div class="site-float-icon-drift"><i class="devicon-nestjs-plain colored" style="animation-delay: -4.5s; animation-duration: 7.5s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 50%; right: 3%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-fastapi-plain colored" style="animation-delay: -2.6s; animation-duration: 7.8s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.015" style="top: 92%; right: 20%; font-size: 24px;"><div class="site-float-icon-drift"><i class="devicon-nodejs-plain colored" style="animation-delay: -5.8s; animation-duration: 6.9s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 22%; right: 24%; font-size: 26px;"><div class="site-float-icon-drift"><i class="devicon-python-plain colored" style="animation-delay: -3.8s; animation-duration: 8.2s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.035" style="top: 44%; left: 1%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-postgresql-plain colored" style="animation-delay: -2.1s; animation-duration: 6.8s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 88%; left: 40%; font-size: 24px;"><div class="site-float-icon-drift"><i class="devicon-docker-plain colored" style="animation-delay: -5.3s; animation-duration: 7.2s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 60%; left: 32%; font-size: 20px;"><div class="site-float-icon-drift"><i class="devicon-git-plain colored" style="animation-delay: -0.4s; animation-duration: 7.6s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.015" style="top: 18%; right: 30%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-github-original" style="animation-delay: -3.5s; animation-duration: 6.4s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.02" style="top: 95%; left: 60%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-vscode-plain colored" style="animation-delay: -1.9s; animation-duration: 7.1s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.03" style="top: 36%; right: 14%; font-size: 24px;"><div class="site-float-icon-drift"><i class="devicon-c-plain colored" style="animation-delay: -4.7s; animation-duration: 8.4s;"></i></div></div>
+        <div class="site-float-icon parallax-layer" data-depth="0.025" style="top: 70%; right: 38%; font-size: 22px;"><div class="site-float-icon-drift"><i class="devicon-racket-plain colored" style="animation-delay: -2.9s; animation-duration: 7.3s;"></i></div></div>
     </div>
 </div>
 
