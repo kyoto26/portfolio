@@ -116,20 +116,79 @@
         <div class="projects-grid">
             <article class="project-card" id="project-reservas">
                 <button class="project-card-trigger" aria-expanded="false" aria-controls="project-reservas-details">
-                    <svg class="project-mockup" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mockup del sistema de reservas de canchas">
+                    <svg class="project-mockup" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Portada ilustrada del sistema de reservas de canchas deportivas">
+                        <defs>
+                            <radialGradient id="reservasGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#f3e8ff" stop-opacity="0.9"/>
+                                <stop offset="25%" stop-color="#c77dff" stop-opacity="0.5"/>
+                                <stop offset="60%" stop-color="#9d4edd" stop-opacity="0.12"/>
+                                <stop offset="100%" stop-color="#9d4edd" stop-opacity="0"/>
+                            </radialGradient>
+                            <linearGradient id="reservasCta" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#9d4edd"/>
+                                <stop offset="100%" stop-color="#c77dff"/>
+                            </linearGradient>
+                            <filter id="reservasBlur" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="18"/>
+                            </filter>
+                            <filter id="reservasCardShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.5"/>
+                            </filter>
+                        </defs>
+
                         <rect x="0" y="0" width="600" height="360" fill="#050505"/>
-                        <rect class="project-court-line" x="30" y="30" width="540" height="300" rx="4" stroke-width="2"/>
-                        <line class="project-court-line" x1="300" y1="30" x2="300" y2="330" stroke-width="1.5"/>
-                        <circle class="project-court-line" cx="300" cy="180" r="54" stroke-width="1.5"/>
-                        <circle class="project-court-dot" cx="300" cy="180" r="3"/>
-                        <rect class="project-court-line" x="30" y="105" width="64" height="150" stroke-width="1.5"/>
-                        <rect class="project-court-line" x="506" y="105" width="64" height="150" stroke-width="1.5"/>
-                        <rect class="project-court-line" x="30" y="145" width="24" height="70" stroke-width="1.5"/>
-                        <rect class="project-court-line" x="546" y="145" width="24" height="70" stroke-width="1.5"/>
-                        <g>
-                            <rect class="project-court-scrim" x="100" y="147" width="400" height="66" rx="4"/>
-                            <text class="project-court-title" x="300" y="176" text-anchor="middle">Sistema de Reservas</text>
-                            <text class="project-court-subtitle" x="300" y="198" text-anchor="middle">Canchas Deportivas · Full-Stack</text>
+
+                        <circle cx="70" cy="60" r="150" fill="url(#reservasGlow)" filter="url(#reservasBlur)" opacity="0.55"/>
+                        <circle cx="520" cy="300" r="110" fill="url(#reservasGlow)" filter="url(#reservasBlur)" opacity="0.35"/>
+
+                        <g class="project-cover-court" transform="translate(250,150) scale(0.46) rotate(-9 300 180)">
+                            <rect class="project-court-line" x="30" y="30" width="540" height="300" rx="4" stroke-width="2"/>
+                            <line class="project-court-line" x1="300" y1="30" x2="300" y2="330" stroke-width="1.5"/>
+                            <circle class="project-court-line" cx="300" cy="180" r="54" stroke-width="1.5"/>
+                            <circle class="project-court-dot" cx="300" cy="180" r="3"/>
+                            <rect class="project-court-line" x="30" y="105" width="64" height="150" stroke-width="1.5"/>
+                            <rect class="project-court-line" x="506" y="105" width="64" height="150" stroke-width="1.5"/>
+                            <rect class="project-court-line" x="30" y="145" width="24" height="70" stroke-width="1.5"/>
+                            <rect class="project-court-line" x="546" y="145" width="24" height="70" stroke-width="1.5"/>
+                        </g>
+
+                        <g class="project-cover-dots">
+                            <circle class="project-cover-dot" cx="30" cy="60" r="1.4"/>
+                            <circle class="project-cover-dot" cx="540" cy="40" r="1.8"/>
+                            <circle class="project-cover-dot" cx="565" cy="90" r="1.3"/>
+                            <circle class="project-cover-dot" cx="500" cy="20" r="1.3"/>
+                            <circle class="project-cover-dot" cx="520" cy="150" r="1.6"/>
+                            <circle class="project-cover-dot" cx="560" cy="320" r="1.5"/>
+                            <circle class="project-cover-dot" cx="40" cy="300" r="1.8"/>
+                            <circle class="project-cover-dot" cx="70" cy="330" r="1.3"/>
+                        </g>
+
+                        <path class="project-cover-connector" d="M320 150 C 360 190, 380 240, 400 278"/>
+
+                        <g transform="rotate(-4 204 119)">
+                            <rect class="project-cover-card" filter="url(#reservasCardShadow)" x="54" y="48" width="300" height="142" rx="14"/>
+                            <rect class="project-cover-bar" x="80" y="76" width="110" height="10" rx="5"/>
+                            <rect class="project-cover-bar project-cover-bar-sub" x="80" y="94" width="64" height="7" rx="3.5"/>
+                            <rect class="project-cover-chip" x="80" y="118" width="40" height="32" rx="7"/>
+                            <rect class="project-cover-chip" x="130" y="118" width="40" height="32" rx="7"/>
+                            <rect class="project-cover-chip-active" x="180" y="118" width="40" height="32" rx="7"/>
+                            <rect class="project-cover-chip" x="230" y="118" width="40" height="32" rx="7"/>
+                            <rect class="project-cover-chip" x="280" y="118" width="40" height="32" rx="7"/>
+                        </g>
+
+                        <g transform="rotate(2 315 242)">
+                            <rect class="project-cover-card project-cover-card-primary" filter="url(#reservasCardShadow)" x="150" y="168" width="330" height="148" rx="14"/>
+                            <circle class="project-cover-icon" cx="188" cy="222" r="18"/>
+                            <line class="project-cover-icon" x1="188" y1="204" x2="188" y2="240"/>
+                            <line class="project-cover-icon" x1="170" y1="222" x2="206" y2="222"/>
+                            <text class="project-court-title" x="222" y="212" text-anchor="start">Sistema de</text>
+                            <text class="project-court-title" x="222" y="238" text-anchor="start">Reservas</text>
+                            <text class="project-court-subtitle" x="222" y="270" text-anchor="start">Canchas Deportivas</text>
+                        </g>
+
+                        <g transform="rotate(-3 439 304)">
+                            <rect class="project-cover-cta" filter="url(#reservasCardShadow)" x="380" y="284" width="118" height="42" rx="21"/>
+                            <path class="project-cover-cta-icon" d="M427 305 L436 314 L453 293"/>
                         </g>
                     </svg>
                     <span class="project-card-hint">
