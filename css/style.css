@@ -332,6 +332,14 @@ nav a:hover::after {
     padding: 100px 60px;
 }
 
+.projects {
+    padding-bottom: 50px;
+}
+
+.lab {
+    padding-top: 50px;
+}
+
 .skills {
     padding: 100px 60px;
 }
@@ -466,7 +474,7 @@ nav a:hover::after {
 }
 
 /* Projects */
-.projects-grid {
+.card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
@@ -717,6 +725,10 @@ nav a:hover::after {
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 14px;
+}
+
+.lab > .project-section-label {
+    margin-top: 30px;
 }
 
 .project-stack {
