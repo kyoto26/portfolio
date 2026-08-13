@@ -333,11 +333,11 @@ nav a:hover::after {
 }
 
 .projects {
-    padding-bottom: 50px;
+    padding-bottom: 0;
 }
 
 .lab {
-    padding-top: 50px;
+    padding-top: 0;
 }
 
 .skills {
@@ -471,6 +471,82 @@ nav a:hover::after {
 .contact-link:hover {
     border-color: var(--brand-violet);
     color: var(--brand-violet);
+}
+
+/* Tech orbit */
+.tech-orbit {
+    display: flex;
+    justify-content: center;
+    padding: 80px 60px;
+    perspective: 1000px;
+}
+
+.tech-orbit-tilt {
+    --orbit-tilt: 60deg;
+    --orbit-diagonal: -25deg;
+    transform-style: preserve-3d;
+    transform: rotate(var(--orbit-diagonal)) rotateX(var(--orbit-tilt));
+}
+
+.tech-orbit-ring {
+    position: relative;
+    --orbit-radius: clamp(120px, 15vw, 190px);
+    width: calc(var(--orbit-radius) * 2);
+    height: calc(var(--orbit-radius) * 2);
+    transform-style: preserve-3d;
+    animation: orbit-spin 90s linear infinite;
+}
+
+.tech-orbit-glow {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, var(--brand-violet-core) 0%, var(--brand-violet-glow) 10%, transparent 32%),
+        radial-gradient(circle at 50% 50%, transparent 38%, var(--brand-violet-glow) 46%, var(--brand-violet) 54%, transparent 68%);
+    filter: blur(22px);
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    animation: orbit-glow-pulse 12s ease-in-out infinite;
+}
+
+.tech-orbit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 26px;
+    transform-style: preserve-3d;
+    transform: rotate(var(--angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--angle)));
+}
+
+.tech-orbit-icon-inner {
+    display: block;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    filter: drop-shadow(0 0 6px rgba(157, 78, 221, 0.35));
+    animation: orbit-spin-reverse 90s linear infinite;
+}
+
+@keyframes orbit-spin {
+    from { transform: rotateZ(0deg); }
+    to { transform: rotateZ(360deg); }
+}
+
+@keyframes orbit-spin-reverse {
+    from { transform: translate(-50%, -50%) rotateZ(0deg); }
+    to { transform: translate(-50%, -50%) rotateZ(-360deg); }
+}
+
+@keyframes orbit-glow-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tech-orbit-ring,
+    .tech-orbit-icon-inner,
+    .tech-orbit-glow {
+        animation: none;
+    }
 }
 
 /* Projects */
