@@ -114,11 +114,11 @@ nav a:hover::after {
 
 .hero-wormhole {
     position: absolute;
-    top: -20%;
-    left: 50%;
+    top: 28%;
+    left: 71%;
     width: clamp(360px, 34vw, 520px);
     aspect-ratio: 1 / 1;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     background:
         radial-gradient(circle at 50% 50%, var(--brand-violet-core) 0%, var(--brand-violet-glow) 10%, transparent 32%),
         radial-gradient(circle at 50% 50%, transparent 38%, var(--brand-violet-glow) 46%, var(--brand-violet) 54%, transparent 68%);
@@ -275,7 +275,9 @@ nav a:hover::after {
 }
 
 .hero-photo {
-    width: min(320px, 100%);
+    height: min(72vh, 640px);
+    width: auto;
+    max-width: 100%;
     aspect-ratio: 375 / 549;
     object-fit: contain;
     display: block;
