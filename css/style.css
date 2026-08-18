@@ -180,7 +180,8 @@ nav a:hover::after {
 @media (prefers-reduced-motion: reduce) {
     .hero-wormhole,
     .site-star-twinkle,
-    .site-float-icon i {
+    .site-float-icon i,
+    .skill-node {
         animation: none;
     }
 }
@@ -362,53 +363,95 @@ nav a:hover::after {
     line-height: 1.6;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+.skills-constellation {
+    position: relative;
+    min-height: 560px;
 }
 
-.skill-category {
-    background-color: #0d0d0d;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    padding: 24px;
+.skills-constellation-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
-.skill-category h3 {
+.skill-cluster-label {
+    position: absolute;
+    margin: 0;
     color: var(--brand-violet);
-    font-size: 16px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 20px;
 }
 
-.skill-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.skill-item {
+.skill-node {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
     font-size: 13px;
     color: #a0a0a0;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    animation-name: skill-node-float;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }
 
-.skill-item i {
+.skill-node i {
     font-size: 32px;
     color: #e0e0e0;
 }
 
+@keyframes skill-node-float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-4px); }
+}
+
 .skill-text {
     font-size: 13px;
-    color: #a0a0a0;
-    border: 1px solid #2a2a2a;
-    padding: 6px 12px;
-    border-radius: 4px;
+    color: var(--brand-violet-glow);
+    text-shadow: 0 0 8px rgba(157, 78, 221, 0.65), 0 0 18px rgba(157, 78, 221, 0.35);
+}
+
+@media (max-width: 760px) {
+    .skills-constellation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 12px 20px;
+        min-height: 0;
+    }
+
+    .skills-constellation-lines {
+        display: none;
+    }
+
+    .skill-cluster-label {
+        position: static;
+        flex-basis: 100%;
+        margin-top: 12px;
+    }
+
+    .skill-cluster-label:first-child {
+        margin-top: 0;
+    }
+
+    .skill-node {
+        position: static;
+        transform: none;
+        animation: none;
+    }
+
+    .skill-text {
+        color: #a0a0a0;
+        text-shadow: none;
+        border: 1px solid #2a2a2a;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
 }
 
 .contact {

@@ -408,53 +408,59 @@
         -->
     </div>
 
-    <div class="skills-grid">
-        <div class="skill-category">
-            <h3>Frontend</h3>
-            <div class="skill-icons">
-                <div class="skill-item"><i class="devicon-html5-plain colored"></i><span>HTML</span></div>
-                <div class="skill-item"><i class="devicon-css3-plain colored"></i><span>CSS</span></div>
-                <div class="skill-item"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
-                <div class="skill-item"><i class="devicon-react-original colored"></i><span>React</span></div>
-                <div class="skill-item"><i class="devicon-nextjs-plain"></i><span>Next.js</span></div>
-            </div>
-        </div>
+    <div class="skills-constellation">
+        <svg class="skills-constellation-lines" aria-hidden="true">
+            <!-- Frontend -->
+            <line class="project-cover-connector" x1="20%" y1="12%" x2="30%" y2="24%"/>
+            <line class="project-cover-connector" x1="30%" y1="24%" x2="26%" y2="40%"/>
+            <line class="project-cover-connector" x1="26%" y1="40%" x2="14%" y2="34%"/>
+            <line class="project-cover-connector" x1="14%" y1="34%" x2="8%" y2="18%"/>
+            <line class="project-cover-connector" x1="8%" y1="18%" x2="20%" y2="12%"/>
 
-        <div class="skill-category">
-            <h3>Backend</h3>
-            <div class="skill-icons">
-                <div class="skill-item"><i class="devicon-nestjs-plain colored"></i><span>NestJS</span></div>
-                <div class="skill-item"><i class="devicon-fastapi-plain colored"></i><span>FastAPI</span></div>
-                <div class="skill-item"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
-                <div class="skill-item"><i class="devicon-python-plain colored"></i><span>Python</span></div>
-            </div>
-        </div>
+            <!-- Backend -->
+            <line class="project-cover-connector" x1="44%" y1="14%" x2="58%" y2="20%"/>
+            <line class="project-cover-connector" x1="58%" y1="20%" x2="54%" y2="38%"/>
+            <line class="project-cover-connector" x1="54%" y1="38%" x2="40%" y2="32%"/>
+            <line class="project-cover-connector" x1="40%" y1="32%" x2="44%" y2="14%"/>
 
-        <div class="skill-category">
-            <h3>Bases de Datos</h3>
-            <div class="skill-icons">
-                <div class="skill-item"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div>
-            </div>
-        </div>
+            <!-- Herramientas -->
+            <line class="project-cover-connector" x1="28%" y1="60%" x2="12%" y2="64%"/>
+            <line class="project-cover-connector" x1="12%" y1="64%" x2="18%" y2="78%"/>
+            <line class="project-cover-connector" x1="18%" y1="78%" x2="34%" y2="82%"/>
+            <line class="project-cover-connector" x1="34%" y1="82%" x2="28%" y2="60%"/>
 
-        <div class="skill-category">
-            <h3>Herramientas</h3>
-            <div class="skill-icons">
-                <div class="skill-item"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
-                <div class="skill-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
-                <div class="skill-item"><i class="devicon-github-original"></i><span>GitHub</span></div>
-                <div class="skill-item"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
-            </div>
-        </div>
+            <!-- Aprendiendo -->
+            <line class="project-cover-connector" x1="56%" y1="64%" x2="72%" y2="60%"/>
+            <line class="project-cover-connector" x1="72%" y1="60%" x2="66%" y2="82%"/>
+            <line class="project-cover-connector" x1="66%" y1="82%" x2="56%" y2="64%"/>
+        </svg>
 
-        <div class="skill-category">
-            <h3>Aprendiendo</h3>
-            <div class="skill-icons">
-                <div class="skill-item"><i class="devicon-react-original colored"></i><span>React Native</span></div>
-                <div class="skill-item"><span class="skill-text">MCP</span></div>
-                <div class="skill-item"><span class="skill-text">Prompt Engineering</span></div>
-            </div>
-        </div>
+        <p class="skill-cluster-label" style="top: 8%; left: 4%;">Frontend</p>
+        <div class="skill-node" style="top: 18%; left: 8%; animation-delay: -0.6s; animation-duration: 7.4s;"><i class="devicon-html5-plain colored"></i><span>HTML</span></div>
+        <div class="skill-node" style="top: 12%; left: 20%; animation-delay: -2.1s; animation-duration: 6.6s;"><i class="devicon-css3-plain colored"></i><span>CSS</span></div>
+        <div class="skill-node" style="top: 24%; left: 30%; animation-delay: -3.8s; animation-duration: 8s;"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+        <div class="skill-node" style="top: 34%; left: 14%; animation-delay: -1.4s; animation-duration: 7s;"><i class="devicon-react-original colored"></i><span>React</span></div>
+        <div class="skill-node" style="top: 40%; left: 26%; animation-delay: -4.5s; animation-duration: 6.8s;"><i class="devicon-nextjs-plain"></i><span>Next.js</span></div>
+
+        <p class="skill-cluster-label" style="top: 4%; left: 38%;">Backend</p>
+        <div class="skill-node" style="top: 14%; left: 44%; animation-delay: -0.9s; animation-duration: 7.2s;"><i class="devicon-nestjs-plain colored"></i><span>NestJS</span></div>
+        <div class="skill-node" style="top: 20%; left: 58%; animation-delay: -3.1s; animation-duration: 6.5s;"><i class="devicon-fastapi-plain colored"></i><span>FastAPI</span></div>
+        <div class="skill-node" style="top: 32%; left: 40%; animation-delay: -5.2s; animation-duration: 7.8s;"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
+        <div class="skill-node" style="top: 38%; left: 54%; animation-delay: -1.8s; animation-duration: 6.9s;"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+
+        <p class="skill-cluster-label" style="top: 8%; left: 76%;">Bases de datos</p>
+        <div class="skill-node" style="top: 24%; left: 85%; animation-delay: -2.6s; animation-duration: 7.5s;"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div>
+
+        <p class="skill-cluster-label" style="top: 56%; left: 6%;">Herramientas</p>
+        <div class="skill-node" style="top: 64%; left: 12%; animation-delay: -0.3s; animation-duration: 7.1s;"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+        <div class="skill-node" style="top: 60%; left: 28%; animation-delay: -4.1s; animation-duration: 6.7s;"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+        <div class="skill-node" style="top: 78%; left: 18%; animation-delay: -2.4s; animation-duration: 7.6s;"><i class="devicon-github-original"></i><span>GitHub</span></div>
+        <div class="skill-node" style="top: 82%; left: 34%; animation-delay: -5.6s; animation-duration: 6.4s;"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
+
+        <p class="skill-cluster-label" style="top: 56%; left: 50%;">Aprendiendo</p>
+        <div class="skill-node" style="top: 64%; left: 56%; animation-delay: -1.1s; animation-duration: 7.3s;"><i class="devicon-react-original colored"></i><span>React Native</span></div>
+        <div class="skill-node skill-node-text" style="top: 60%; left: 72%; animation-delay: -3.6s; animation-duration: 6.9s;"><span class="skill-text">MCP</span></div>
+        <div class="skill-node skill-node-text" style="top: 82%; left: 66%; animation-delay: -0.7s; animation-duration: 7.7s;"><span class="skill-text">Prompt Engineering</span></div>
     </div>
 </section>
 
@@ -488,8 +494,8 @@
         <h2>¿Trabajamos juntos?</h2>
         <p class="contact-text">
             Siempre estoy abierto a conversar sobre proyectos, colaboraciones
-            o simplemente para conectar. Si tenés una idea en mente o querés
-            charlar sobre desarrollo de software, escribime.
+            o simplemente para conectar. Si tienes una idea en mente o quieres
+            charlar sobre desarrollo de software, escríbeme.
         </p>
         <div class="contact-links">
             <a href="mailto:kyoto2617@gmail.com" class="contact-link">
