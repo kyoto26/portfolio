@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -363,7 +371,13 @@
                                 Experimentos y pruebas técnicas sueltas, fuera del formato de un proyecto completo.
                             </p>
 
-                            <div class="card-grid" id="lab-experiments-gallery"></div>
+                            <div class="lab-galaxy-frame">
+                                <button class="galaxy-fullscreen-btn" type="button" aria-label="Ver galaxia en pantalla completa">
+                                    <svg class="galaxy-fullscreen-icon-expand" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/></svg>
+                                    <svg class="galaxy-fullscreen-icon-collapse" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 9h-3a2 2 0 0 1-2-2V4M15 21v-3a2 2 0 0 1 2-2h3M3 15h3a2 2 0 0 1 2 2v3"/></svg>
+                                </button>
+                                <div id="galaxy"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -495,5 +509,6 @@
 </section>
 </main>
 <script src="js/main.js"></script>
+<script type="module" src="js/galaxy.js"></script>
 </body>
 </html>
