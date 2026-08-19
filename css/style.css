@@ -992,3 +992,227 @@ nav a:hover::after {
     }
 }
 
+/* ============================================================
+ * Experimento "Laboratorio": paisaje de montaña día/noche
+ * (card Logos, #lab-logos-gallery). Reutiliza las variables de
+ * marca ya declaradas en :root (--brand-violet*, --brand-black);
+ * --sunset-transition-duration es la única variable nueva y
+ * queda scopeada a .sunset-card para no filtrarse como global.
+ * ============================================================ */
+
+.sunset-card {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    --sunset-transition-duration: 3s;
+}
+
+.sunset-scene {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 600;
+}
+
+/* ---------- Cielo ---------- */
+
+.sunset-sky-stop {
+    transition: stop-color var(--sunset-transition-duration) ease;
+}
+
+.sunset-sky-stop-1 { stop-color: #ffd36e; }
+.sunset-sky-stop-2 { stop-color: #ff9a56; }
+.sunset-sky-stop-3 { stop-color: #ff6f91; }
+.sunset-sky-stop-4 { stop-color: #c94b7c; }
+
+.sunset-scene.is-night .sunset-sky-stop-1 { stop-color: #060215; }
+.sunset-scene.is-night .sunset-sky-stop-2 { stop-color: #150a2e; }
+.sunset-scene.is-night .sunset-sky-stop-3 { stop-color: #2d1150; }
+.sunset-scene.is-night .sunset-sky-stop-4 { stop-color: #1a0b2e; }
+
+/* ---------- Nubes ---------- */
+
+.sunset-cloud {
+    fill: #ffb199;
+    opacity: 0.55;
+    transition: fill var(--sunset-transition-duration) ease, opacity var(--sunset-transition-duration) ease;
+}
+
+.sunset-scene.is-night .sunset-cloud {
+    fill: #3a2a55;
+    opacity: 0.28;
+}
+
+/* ---------- Montañas ---------- */
+
+.sunset-haze-layer {
+    opacity: 0.88;
+}
+
+.sunset-mountain {
+    transition: fill var(--sunset-transition-duration) ease;
+}
+
+.sunset-mountain-far { fill: #f2a6b3; }
+.sunset-mountain-mid { fill: #d9647d; }
+.sunset-mountain-near { fill: #7a3b52; }
+
+.sunset-scene.is-night .sunset-mountain-far { fill: #352a52; }
+.sunset-scene.is-night .sunset-mountain-mid { fill: #211636; }
+.sunset-scene.is-night .sunset-mountain-near { fill: #130c1f; }
+
+/* Nieve solo en los picos más altos/prominentes (por encima de la línea de árboles). */
+.sunset-snow-cap {
+    fill: #fff6ea;
+    opacity: 0.92;
+    transition: fill var(--sunset-transition-duration) ease;
+}
+
+.sunset-scene.is-night .sunset-snow-cap {
+    fill: #d7dbf2;
+}
+
+/* ---------- Sol / Luna ---------- */
+
+.sunset-celestial-body,
+.sunset-celestial-glow {
+    transition: opacity var(--sunset-transition-duration) ease, transform var(--sunset-transition-duration) ease;
+}
+
+/*
+ * Sol y luna comparten las dos mismas posiciones (arriba del grupo
+ * .sunset-celestial en translate(600,350)):
+ *   - "alto":     translate(350px, -195px) -> arriba a la derecha, visible.
+ *   - "escondido": translate(0, 0)          -> justo en el pico de la
+ *     cordillera media, donde su propio dibujo lo tapa.
+ * De día el sol está arriba y la luna escondida; al pasar a noche
+ * intercambian posición: el sol desciende y se esconde tras el pico,
+ * la luna sube desde ahí hasta el punto alto.
+ */
+
+.sunset-celestial-sun,
+.sunset-celestial-glow-sun {
+    opacity: 1;
+    transform: translate(350px, -195px);
+    transition: opacity var(--sunset-transition-duration) ease,
+                transform var(--sunset-transition-duration) cubic-bezier(0.64, 0, 0.78, 0);
+}
+
+.sunset-celestial-moon,
+.sunset-celestial-glow-moon {
+    opacity: 0;
+    transform: translate(0, 0);
+    transition: opacity var(--sunset-transition-duration) ease,
+                transform var(--sunset-transition-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sunset-scene.is-night .sunset-celestial-sun,
+.sunset-scene.is-night .sunset-celestial-glow-sun {
+    opacity: 0;
+    /* Se esconde descendiendo detrás del pico de la cordillera media. */
+    transform: translate(0, 0);
+}
+
+.sunset-scene.is-night .sunset-celestial-moon,
+.sunset-scene.is-night .sunset-celestial-glow-moon {
+    opacity: 1;
+    /* Asciende desde detrás del pico hacia arriba-derecha del cielo. */
+    transform: translate(350px, -195px);
+}
+
+.sunset-crater {
+    fill: #b9aede;
+    opacity: 0.55;
+}
+
+/* ---------- Pinos ---------- */
+
+.sunset-pines path {
+    fill: #170f16;
+    transition: fill var(--sunset-transition-duration) ease;
+}
+
+.sunset-scene.is-night .sunset-pines path {
+    fill: #0a060c;
+}
+
+/* ---------- Estrellas ---------- */
+
+.sunset-star {
+    fill: #ffffff;
+    opacity: 0;
+    transition: opacity 2.2s ease;
+}
+
+.sunset-scene.is-night .sunset-star {
+    opacity: var(--sunset-star-opacity, 0.7);
+}
+
+.sunset-star-twinkle {
+    animation: none;
+}
+
+.sunset-scene.is-night .sunset-star-twinkle {
+    animation: sunset-star-twinkle ease-in-out infinite;
+    animation-delay: var(--sunset-twinkle-delay, 0s);
+    animation-duration: var(--sunset-twinkle-duration, 3s);
+}
+
+@keyframes sunset-star-twinkle {
+    0%, 100% { opacity: var(--sunset-star-opacity, 0.7); }
+    50% { opacity: 0.15; }
+}
+
+/* ---------- Botón ---------- */
+
+.sunset-toggle-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(5, 5, 5, 0.45);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+}
+
+.sunset-toggle-btn:hover,
+.sunset-toggle-btn:focus-visible {
+    border-color: var(--brand-violet-glow);
+    background: rgba(20, 10, 30, 0.6);
+}
+
+.sunset-toggle-btn:active {
+    transform: scale(0.96);
+}
+
+.sunset-toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sunset-card {
+        --sunset-transition-duration: 0.01s;
+    }
+
+    .sunset-star {
+        transition: opacity 0.01s linear;
+    }
+
+    .sunset-scene.is-night .sunset-star-twinkle {
+        animation: none;
+    }
+}
+
