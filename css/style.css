@@ -112,11 +112,17 @@ nav a:hover::after {
     }
 }
 
+/*
+ * Posicionado relativo a .hero-visual (no a .hero completo) y
+ * centrado ahí, para quedar siempre detrás de la foto sin importar
+ * si el layout es de 2 columnas (escritorio) o apilado (mobile) —
+ * un solo posicionamiento que funciona en ambos casos.
+ */
 .hero-wormhole {
     position: absolute;
-    top: 28%;
-    left: 71%;
-    width: clamp(360px, 34vw, 520px);
+    top: 50%;
+    left: 50%;
+    width: clamp(220px, 60vw, 520px);
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     background:
@@ -131,8 +137,8 @@ nav a:hover::after {
 }
 
 @keyframes wormhole-pulse {
-    0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(1); }
-    50% { opacity: 0.65; transform: translateX(-50%) scale(1.06); }
+    0%, 100% { opacity: 0.45; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.65; transform: translate(-50%, -50%) scale(1.06); }
 }
 
 .site-star {
@@ -1213,6 +1219,58 @@ nav a:hover::after {
 
     .sunset-scene.is-night .sunset-star-twinkle {
         animation: none;
+    }
+}
+
+/* ============================================================
+ * Mobile (<=760px) — mismo corte que usa el fallback de Skills.
+ * Colocado al final del archivo a propósito: varias de estas
+ * reglas (.contact, .tech-orbit, .projects/.lab/.skills) apuntan
+ * a selectores cuya definición base está más arriba en el
+ * archivo, y a igual especificidad gana la que aparece después
+ * en el orden de cascada — así que este bloque necesita ir
+ * después de todas ellas para poder pisarlas.
+ * ============================================================ */
+
+@media (max-width: 760px) {
+    header {
+        padding: 20px 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        min-height: 0;
+        padding: 60px 24px 48px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        flex-shrink: 1;
+    }
+
+    .hero-visual {
+        flex: none;
+        width: 100%;
+    }
+
+    .hero-photo {
+        width: min(70vw, 320px);
+        height: auto;
+    }
+
+    .projects,
+    .lab,
+    .skills {
+        padding: 56px 24px;
+    }
+
+    .tech-orbit {
+        padding: 48px 24px;
+    }
+
+    .contact {
+        padding: 64px 24px;
     }
 }
 
