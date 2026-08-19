@@ -199,3 +199,24 @@
         }
     });
 })();
+
+(function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+
+    if (!toggle || !menu) return;
+
+    function setOpen(open) {
+        menu.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    toggle.addEventListener('click', () => {
+        setOpen(!menu.classList.contains('is-open'));
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+    });
+})();
