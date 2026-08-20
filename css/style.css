@@ -46,11 +46,14 @@ main {
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
+/* El nombre ya aparece grande como título del Hero justo debajo;
+   repetirlo chico en el header es redundante en cualquier resolución. */
 .logo {
+    display: none;
     font-size: 24px;
     font-weight: bold;
 }
@@ -147,10 +150,10 @@ nav a:hover::after {
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     background:
-        radial-gradient(circle at 50% 50%, var(--brand-violet-core) 0%, var(--brand-violet-glow) 10%, transparent 32%),
-        radial-gradient(circle at 50% 50%, transparent 38%, var(--brand-violet-glow) 46%, var(--brand-violet) 54%, transparent 68%);
-    filter: blur(22px);
-    opacity: 0.5;
+        radial-gradient(circle at 50% 50%, var(--brand-violet-core) 0%, var(--brand-violet-glow) 8%, transparent 26%),
+        radial-gradient(circle at 50% 50%, transparent 34%, var(--brand-violet-glow) 46%, var(--brand-violet) 54%, transparent 70%);
+    filter: blur(34px);
+    opacity: 0.28;
     mix-blend-mode: screen;
     z-index: 0;
     pointer-events: none;
@@ -158,8 +161,8 @@ nav a:hover::after {
 }
 
 @keyframes wormhole-pulse {
-    0%, 100% { opacity: 0.45; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.65; transform: translate(-50%, -50%) scale(1.06); }
+    0%, 100% { opacity: 0.24; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.36; transform: translate(-50%, -50%) scale(1.06); }
 }
 
 .site-star {
@@ -1258,15 +1261,8 @@ nav a:hover::after {
         padding: 20px 20px;
     }
 
-    /* El nombre ya aparece grande como título del Hero justo debajo;
-       repetirlo chico en el header es redundante en una pantalla angosta. */
-    .logo {
-        display: none;
-    }
-
     nav {
         position: relative;
-        justify-content: flex-end;
     }
 
     .nav-toggle {
