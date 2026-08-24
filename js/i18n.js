@@ -26,6 +26,7 @@
             'hero.aria_github': 'GitHub',
             'hero.aria_linkedin': 'LinkedIn',
             'hero.aria_email': 'Email',
+            'hero.aria_upwork': 'Upwork',
 
             'projects.eyebrow': 'PROYECTOS',
             'projects.heading': 'Trabajo destacado',
@@ -74,6 +75,7 @@
             'contact.text': 'Siempre estoy abierto a conversar sobre proyectos, colaboraciones o simplemente para conectar. Si tienes una idea en mente o quieres charlar sobre desarrollo de software, escríbeme.',
             'contact.link_github': 'GitHub',
             'contact.link_linkedin': 'LinkedIn',
+            'contact.link_upwork': 'Upwork',
 
             'common.lang_switch_aria': 'Selector de idioma',
         },
@@ -91,6 +93,7 @@
             'hero.aria_github': 'GitHub',
             'hero.aria_linkedin': 'LinkedIn',
             'hero.aria_email': 'Email',
+            'hero.aria_upwork': 'Upwork',
 
             'projects.eyebrow': 'PROJECTS',
             'projects.heading': 'Featured work',
@@ -139,6 +142,7 @@
             'contact.text': "I'm always open to talk about projects, collaborations, or just to connect. If you have an idea in mind or want to chat about software development, reach out.",
             'contact.link_github': 'GitHub',
             'contact.link_linkedin': 'LinkedIn',
+            'contact.link_upwork': 'Upwork',
 
             'common.lang_switch_aria': 'Language switch',
         },
