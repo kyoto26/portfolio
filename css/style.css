@@ -48,6 +48,45 @@ nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 20px;
+}
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid var(--brand-violet);
+    border-radius: 20px;
+    padding: 3px;
+    position: relative;
+    z-index: 1000;
+}
+
+.lang-switch-btn {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.lang-switch-btn:hover {
+    color: var(--brand-violet-glow);
+}
+
+.lang-switch-btn.is-active {
+    background-color: var(--brand-violet);
+    color: #050505;
+}
+
+.lang-switch-btn.is-active:hover {
+    color: #050505;
 }
 
 /* El nombre ya aparece grande como título del Hero justo debajo;

@@ -804,6 +804,16 @@ if (galaxyEl && cardEl) {
             }
         });
 
+        function updateFullscreenAria() {
+            const isFullscreen = document.fullscreenElement === frameEl;
+            fullscreenBtn.setAttribute(
+                "aria-label",
+                window.i18n.t(isFullscreen ? "galaxy.fullscreen_aria_collapse" : "galaxy.fullscreen_aria_expand")
+            );
+        }
+
+        document.addEventListener("i18n:languagechange", updateFullscreenAria);
+
         document.addEventListener("fullscreenchange", () => {
 
             const isFullscreen =
@@ -811,12 +821,7 @@ if (galaxyEl && cardEl) {
 
             fullscreenBtn.classList.toggle("is-fullscreen", isFullscreen);
 
-            fullscreenBtn.setAttribute(
-                "aria-label",
-                isFullscreen
-                    ? "Salir de pantalla completa"
-                    : "Ver galaxia en pantalla completa"
-            );
+            updateFullscreenAria();
 
             if (!initialized) return;
 

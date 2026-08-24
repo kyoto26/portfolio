@@ -229,13 +229,22 @@
         scene.classList.toggle('is-night', isNight);
         toggleBtn.setAttribute('aria-pressed', String(isNight));
         toggleIcon.textContent = isNight ? '☀️' : '🌙';
-        toggleLabel.textContent = isNight ? 'Día' : 'Noche';
+        toggleLabel.textContent = window.i18n.t(isNight ? 'sunset.toggle_label_day' : 'sunset.toggle_label_night');
     }
 
     toggleBtn.addEventListener('click', () => {
         const isNight = !scene.classList.contains('is-night');
         setNight(isNight);
     });
+
+    // Resincroniza el label (no el estado día/noche en sí) cuando
+    // se cambia de idioma, ya que setNight() es la única fuente de
+    // ese texto y no está marcado con data-i18n en el HTML.
+    document.addEventListener('i18n:languagechange', () => {
+        setNight(scene.classList.contains('is-night'));
+    });
+
+    setNight(scene.classList.contains('is-night'));
 
     // ============================================================
     // CONTROL DE CICLO DE VIDA: igual que galaxy.js con la card
