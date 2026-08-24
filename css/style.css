@@ -1285,6 +1285,27 @@ nav a:hover::after {
     }
 }
 
+/* 404 page */
+.error-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+}
+
+.error-code {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: clamp(120px, 22vw, 260px);
+    line-height: 0.9;
+    color: #ffffff;
+    text-shadow: 0 0 60px var(--brand-violet-glow);
+    margin: 0 0 8px;
+}
+
 /* ============================================================
  * Mobile (<=760px) — same breakpoint the Skills fallback uses.
  * Placed at the end of the file on purpose: several of these
