@@ -1,10 +1,10 @@
 // ============================================================
-// i18n del portafolio — ES/EN.
-// Sin build step: diccionario plano + reemplazo de textContent/
-// innerHTML/aria-label sobre elementos marcados con data-i18n*.
-// Persistencia en localStorage; dispara 'i18n:languagechange' en
-// document para que otros scripts (sunset.js, galaxy.js) puedan
-// resincronizar el texto que ellos mismos escriben en runtime.
+// Portfolio i18n — ES/EN.
+// No build step: flat dictionary + textContent/innerHTML/
+// aria-label replacement on elements marked with data-i18n*.
+// Persisted to localStorage; fires 'i18n:languagechange' on
+// document so other scripts (sunset.js, galaxy.js) can
+// resynchronize text they write themselves at runtime.
 // ============================================================
 
 (function () {

@@ -89,8 +89,8 @@ nav {
     color: #050505;
 }
 
-/* El nombre ya aparece grande como título del Hero justo debajo;
-   repetirlo chico en el header es redundante en cualquier resolución. */
+/* The name already appears large as the Hero title right below;
+   repeating it small in the header is redundant at any resolution. */
 .logo {
     display: none;
     font-size: 24px;
@@ -176,10 +176,10 @@ nav a:hover::after {
 }
 
 /*
- * Posicionado relativo a .hero-visual (no a .hero completo) y
- * centrado ahí, para quedar siempre detrás de la foto sin importar
- * si el layout es de 2 columnas (escritorio) o apilado (mobile) —
- * un solo posicionamiento que funciona en ambos casos.
+ * Positioned relative to .hero-visual (not the whole .hero) and
+ * centered there, to always stay behind the photo regardless of
+ * whether the layout is 2-column (desktop) or stacked (mobile) —
+ * a single positioning that works in both cases.
  */
 .hero-wormhole {
     position: absolute;
@@ -1062,11 +1062,11 @@ nav a:hover::after {
 }
 
 /* ============================================================
- * Experimento "Laboratorio": paisaje de montaña día/noche
- * (card Logos, #lab-logos-gallery). Reutiliza las variables de
- * marca ya declaradas en :root (--brand-violet*, --brand-black);
- * --sunset-transition-duration es la única variable nueva y
- * queda scopeada a .sunset-card para no filtrarse como global.
+ * "Lab" experiment: day/night mountain landscape
+ * (Logos card, #lab-logos-gallery). Reuses the brand variables
+ * already declared in :root (--brand-violet*, --brand-black);
+ * --sunset-transition-duration is the only new variable and
+ * stays scoped to .sunset-card so it doesn't leak globally.
  * ============================================================ */
 
 .sunset-card {
@@ -1085,7 +1085,7 @@ nav a:hover::after {
     aspect-ratio: 1200 / 600;
 }
 
-/* ---------- Cielo ---------- */
+/* ---------- Sky ---------- */
 
 .sunset-sky-stop {
     transition: stop-color var(--sunset-transition-duration) ease;
@@ -1101,7 +1101,7 @@ nav a:hover::after {
 .sunset-scene.is-night .sunset-sky-stop-3 { stop-color: #2d1150; }
 .sunset-scene.is-night .sunset-sky-stop-4 { stop-color: #1a0b2e; }
 
-/* ---------- Nubes ---------- */
+/* ---------- Clouds ---------- */
 
 .sunset-cloud {
     fill: #ffb199;
@@ -1114,7 +1114,7 @@ nav a:hover::after {
     opacity: 0.28;
 }
 
-/* ---------- Montañas ---------- */
+/* ---------- Mountains ---------- */
 
 .sunset-haze-layer {
     opacity: 0.88;
@@ -1132,7 +1132,7 @@ nav a:hover::after {
 .sunset-scene.is-night .sunset-mountain-mid { fill: #211636; }
 .sunset-scene.is-night .sunset-mountain-near { fill: #130c1f; }
 
-/* Nieve solo en los picos más altos/prominentes (por encima de la línea de árboles). */
+/* Snow only on the tallest/most prominent peaks (above the tree line). */
 .sunset-snow-cap {
     fill: #fff6ea;
     opacity: 0.92;
@@ -1143,7 +1143,7 @@ nav a:hover::after {
     fill: #d7dbf2;
 }
 
-/* ---------- Sol / Luna ---------- */
+/* ---------- Sun / Moon ---------- */
 
 .sunset-celestial-body,
 .sunset-celestial-glow {
@@ -1151,14 +1151,14 @@ nav a:hover::after {
 }
 
 /*
- * Sol y luna comparten las dos mismas posiciones (arriba del grupo
- * .sunset-celestial en translate(600,350)):
- *   - "alto":     translate(350px, -195px) -> arriba a la derecha, visible.
- *   - "escondido": translate(0, 0)          -> justo en el pico de la
- *     cordillera media, donde su propio dibujo lo tapa.
- * De día el sol está arriba y la luna escondida; al pasar a noche
- * intercambian posición: el sol desciende y se esconde tras el pico,
- * la luna sube desde ahí hasta el punto alto.
+ * Sun and moon share the same two positions (above the
+ * .sunset-celestial group at translate(600,350)):
+ *   - "high":   translate(350px, -195px) -> top-right, visible.
+ *   - "hidden": translate(0, 0)          -> right at the mid
+ *     mountain range's peak, where its own drawing covers it.
+ * During the day the sun is up and the moon is hidden; when
+ * switching to night they swap positions: the sun descends and
+ * hides behind the peak, the moon rises from there to the high point.
  */
 
 .sunset-celestial-sun,
@@ -1180,14 +1180,14 @@ nav a:hover::after {
 .sunset-scene.is-night .sunset-celestial-sun,
 .sunset-scene.is-night .sunset-celestial-glow-sun {
     opacity: 0;
-    /* Se esconde descendiendo detrás del pico de la cordillera media. */
+    /* Hides by descending behind the mid mountain range's peak. */
     transform: translate(0, 0);
 }
 
 .sunset-scene.is-night .sunset-celestial-moon,
 .sunset-scene.is-night .sunset-celestial-glow-moon {
     opacity: 1;
-    /* Asciende desde detrás del pico hacia arriba-derecha del cielo. */
+    /* Rises from behind the peak toward the upper-right of the sky. */
     transform: translate(350px, -195px);
 }
 
@@ -1196,7 +1196,7 @@ nav a:hover::after {
     opacity: 0.55;
 }
 
-/* ---------- Pinos ---------- */
+/* ---------- Pines ---------- */
 
 .sunset-pines path {
     fill: #170f16;
@@ -1207,7 +1207,7 @@ nav a:hover::after {
     fill: #0a060c;
 }
 
-/* ---------- Estrellas ---------- */
+/* ---------- Stars ---------- */
 
 .sunset-star {
     fill: #ffffff;
@@ -1234,7 +1234,7 @@ nav a:hover::after {
     50% { opacity: 0.15; }
 }
 
-/* ---------- Botón ---------- */
+/* ---------- Button ---------- */
 
 .sunset-toggle-btn {
     position: absolute;
@@ -1286,13 +1286,13 @@ nav a:hover::after {
 }
 
 /* ============================================================
- * Mobile (<=760px) — mismo corte que usa el fallback de Skills.
- * Colocado al final del archivo a propósito: varias de estas
- * reglas (.contact, .tech-orbit, .projects/.lab/.skills) apuntan
- * a selectores cuya definición base está más arriba en el
- * archivo, y a igual especificidad gana la que aparece después
- * en el orden de cascada — así que este bloque necesita ir
- * después de todas ellas para poder pisarlas.
+ * Mobile (<=760px) — same breakpoint the Skills fallback uses.
+ * Placed at the end of the file on purpose: several of these
+ * rules (.contact, .tech-orbit, .projects/.lab/.skills) target
+ * selectors whose base definition is further up in the file,
+ * and at equal specificity the one appearing later in the
+ * cascade order wins — so this block needs to come after all
+ * of them in order to override them.
  * ============================================================ */
 
 @media (max-width: 760px) {
@@ -1311,11 +1311,11 @@ nav a:hover::after {
     }
 
     /*
-     * position: fixed + inset: 0 para cubrir TODA la pantalla
-     * (viewport), no solo el ancho del <nav> — así el menú tapa por
-     * completo el contenido de atrás en vez de flotar semi-transparente
-     * mezclado con él. z-index bien por encima de header/main (que
-     * están ambos en z-index:1) para no depender del orden en el DOM.
+     * position: fixed + inset: 0 to cover the ENTIRE screen
+     * (viewport), not just the <nav> width — so the menu completely
+     * covers the content behind it instead of floating semi-
+     * transparently mixed in with it. z-index well above header/main
+     * (both at z-index:1) so it doesn't depend on DOM order.
      */
     nav ul {
         position: fixed;

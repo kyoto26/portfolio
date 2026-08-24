@@ -14,10 +14,10 @@ import { ShaderPass } from
 
 
 // ============================================================
-// CICLO DE VIDA: la escena solo se crea al primer expand de la
-// card "Laboratorio", y el render loop se pausa/reanuda según
-// la clase "is-expanded" del article, para no gastar recursos
-// mientras la card está colapsada.
+// LIFECYCLE: the scene is only created on the first expand of
+// the "Lab" card, and the render loop is paused/resumed based
+// on the article's "is-expanded" class, to avoid spending
+// resources while the card is collapsed.
 // ============================================================
 
 const galaxyEl = document.getElementById("galaxy");
@@ -34,9 +34,9 @@ if (galaxyEl && cardEl) {
     let blackHole, projectedBlackHole;
     let distortionReferenceDistance, distortionBaseRadius;
 
-    // Definida antes de initScene para poder invocarla explícitamente
-    // desde el handler de fullscreenchange, no solo desde el
-    // ResizeObserver (ver bloque de PANTALLA COMPLETA más abajo).
+    // Defined before initScene so it can be called explicitly
+    // from the fullscreenchange handler, not just from the
+    // ResizeObserver (see the FULLSCREEN block further below).
     function resizeToContainer() {
 
         const width = galaxyEl.clientWidth;
@@ -54,7 +54,7 @@ if (galaxyEl && cardEl) {
     function initScene() {
 
         // ============================================================
-        // ESCENA
+        // SCENE
         // ============================================================
 
         const scene = new THREE.Scene();
@@ -63,7 +63,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // CÁMARA
+        // CAMERA
         // ============================================================
 
         camera = new THREE.PerspectiveCamera(
@@ -97,7 +97,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // CONTROLES
+        // CONTROLS
         // ============================================================
 
         controls = new OrbitControls(
@@ -115,7 +115,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // CONFIGURACIÓN DE LA GALAXIA
+        // GALAXY CONFIGURATION
         // ============================================================
 
         const starCount = 30000;
@@ -128,7 +128,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // GEOMETRÍA DE LAS ESTRELLAS
+        // STAR GEOMETRY
         // ============================================================
 
         const positions = new Float32Array(
@@ -140,23 +140,23 @@ if (galaxyEl && cardEl) {
         );
 
         const starPalette = [
-            new THREE.Color(0xffffff), // blanco
-            new THREE.Color(0xcfe0ff), // blanco azulado
-            new THREE.Color(0xaac4ff), // azul muy tenue
-            new THREE.Color(0xfff2cc), // amarillo pálido
-            new THREE.Color(0xffd9b3), // naranja tenue
+            new THREE.Color(0xffffff), // white
+            new THREE.Color(0xcfe0ff), // bluish white
+            new THREE.Color(0xaac4ff), // very faint blue
+            new THREE.Color(0xfff2cc), // pale yellow
+            new THREE.Color(0xffd9b3), // faint orange
         ];
 
-        // Anclas del gradiente cálido (núcleo) / frío (bordes),
-        // reutilizando dos tonos que ya existen en starPalette
+        // Anchors for the warm (core) / cool (edges) gradient,
+        // reusing two tones that already exist in starPalette
 
-        const coreColor = new THREE.Color(0xffd9b3); // naranja tenue
+        const coreColor = new THREE.Color(0xffd9b3); // faint orange
 
-        const rimColor = new THREE.Color(0xaac4ff); // azul muy tenue
+        const rimColor = new THREE.Color(0xaac4ff); // very faint blue
 
 
         // ============================================================
-        // GENERACIÓN DE LA GALAXIA
+        // GALAXY GENERATION
         // ============================================================
 
         for (let i = 0; i < starCount; i++) {
@@ -165,7 +165,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // DISTANCIA AL CENTRO
+            // DISTANCE TO CENTER
             // --------------------------------------------------------
 
             const radius =
@@ -173,7 +173,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // BRAZO AL QUE PERTENECE
+            // ARM IT BELONGS TO
             // --------------------------------------------------------
 
             const arm =
@@ -181,7 +181,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // ÁNGULO BASE DEL BRAZO
+            // ARM BASE ANGLE
             // --------------------------------------------------------
 
             const armAngle =
@@ -189,7 +189,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // CURVATURA DE LA ESPIRAL
+            // SPIRAL CURVATURE
             // --------------------------------------------------------
 
             const spinAngle =
@@ -197,7 +197,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // ÁNGULO FINAL
+            // FINAL ANGLE
             // --------------------------------------------------------
 
             const angle =
@@ -205,7 +205,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // DISPERSIÓN ALEATORIA
+            // RANDOM SCATTER
             // --------------------------------------------------------
 
             const random =
@@ -213,7 +213,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // POSICIÓN X
+            // X POSITION
             // --------------------------------------------------------
 
             positions[i3] =
@@ -221,7 +221,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // POSICIÓN Y
+            // Y POSITION
             // --------------------------------------------------------
 
             const height =
@@ -233,7 +233,7 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // POSICIÓN Z
+            // Z POSITION
             // --------------------------------------------------------
 
             positions[i3 + 2] =
@@ -241,16 +241,16 @@ if (galaxyEl && cardEl) {
 
 
             // --------------------------------------------------------
-            // COLOR DE LA ESTRELLA
+            // STAR COLOR
             // --------------------------------------------------------
 
-            // Tendencia cálido-centro / frío-borde según el radio
+            // Warm-center / cool-edge tendency based on radius
 
             const t =
                 Math.min(radius / galaxyRadius, 1);
 
 
-            // Jitter: evita que el gradiente se vea perfecto/artificial
+            // Jitter: keeps the gradient from looking perfect/artificial
 
             const jitteredT =
                 Math.min(Math.max(t + (Math.random() - 0.5) * 0.3, 0), 1);
@@ -259,7 +259,7 @@ if (galaxyEl && cardEl) {
                 coreColor.clone().lerp(rimColor, jitteredT);
 
 
-            // Pequeño empujón hacia un color de la paleta original
+            // Small nudge toward a color from the original palette
 
             const paletteColor =
                 starPalette[Math.floor(Math.random() * starPalette.length)];
@@ -319,7 +319,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // GALAXIA
+        // GALAXY
         // ============================================================
 
         galaxy =
@@ -332,7 +332,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // CONFIGURACIÓN DE LAS NEBULOSAS
+        // NEBULA CONFIGURATION
         // ============================================================
 
         const nebulaParticleCount = 4200;
@@ -340,8 +340,8 @@ if (galaxyEl && cardEl) {
         const particlesPerTier =
             Math.floor(nebulaParticleCount / 3);
 
-        // Dispersión ancha alrededor del brazo (más difusa que la de
-        // las estrellas) para dar aspecto de neblina, no de línea
+        // Wide scatter around the arm (more diffuse than the stars')
+        // to give it a haze look rather than a line
 
         const nebulaScatter = 4;
 
@@ -349,23 +349,23 @@ if (galaxyEl && cardEl) {
 
         const nebulaOpacity = 0.1;
 
-        // Tono único (regiones de hidrógeno ionizado)
+        // Single hue (ionized hydrogen regions)
 
         const nebulaColor = new THREE.Color(0xff8a3d);
 
 
         // ============================================================
-        // GENERACIÓN DE LAS PARTÍCULAS DE NEBULOSA
+        // NEBULA PARTICLE GENERATION
         // ============================================================
 
-        // Cada tier de tamaño es un THREE.Points independiente, ya
-        // que PointsMaterial solo admite un tamaño fijo por objeto
-        // (sin ShaderMaterial no hay tamaño por-partícula).
+        // Each size tier is an independent THREE.Points, since
+        // PointsMaterial only supports one fixed size per object
+        // (without a ShaderMaterial there's no per-particle size).
 
-        // Las partículas se generan directamente sobre la misma
-        // fórmula de brazo espiral que usan las estrellas (armAngle +
-        // radius * spin), en vez de agruparse alrededor de centros —
-        // así la neblina queda dispersa a lo largo de los brazos.
+        // Particles are generated directly on the same spiral-arm
+        // formula the stars use (armAngle + radius * spin), instead
+        // of clustering around centers — so the haze stays spread
+        // out along the arms.
 
         const nebulae = new THREE.Group();
 
@@ -406,7 +406,7 @@ if (galaxyEl && cardEl) {
                 const i3 = p * 3;
 
 
-                // Misma fórmula de brazo espiral que usan las estrellas
+                // Same spiral-arm formula the stars use
 
                 const radius =
                     Math.random() * galaxyRadius;
@@ -430,7 +430,7 @@ if (galaxyEl && cardEl) {
                     Math.cos(angle) * radius + scatter;
 
 
-                // Mismo grosor de disco que usan las estrellas
+                // Same disc thickness the stars use
 
                 tierPositions[i3 + 1] =
                     (Math.random() - 0.5) * (3 - radius * 0.08);
@@ -479,7 +479,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // AGUJERO NEGRO
+        // BLACK HOLE
         // ============================================================
 
         const blackHoleRadius = 0.6;
@@ -508,7 +508,7 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // POST-PROCESADO
+        // POST-PROCESSING
         // ============================================================
 
         const PassthroughShader = {
@@ -586,15 +586,15 @@ if (galaxyEl && cardEl) {
         testPass =
             new ShaderPass(TestShader);
 
-        // Fuera de la cadena activa del composer: se deja definido
-        // como referencia del ejercicio, pero no se aplica al render.
+        // Outside the composer's active chain: left defined as a
+        // reference from the exercise, but not applied to the render.
         // composer.addPass(testPass);
 
         clock = new THREE.Clock();
 
 
         // ============================================================
-        // POST-PROCESADO: distorsión real del agujero negro
+        // POST-PROCESSING: actual black hole distortion
         // ============================================================
 
         const DistortionShader = {
@@ -645,9 +645,9 @@ if (galaxyEl && cardEl) {
 
         projectedBlackHole = new THREE.Vector3();
 
-        // Distancia cámara↔agujero negro de referencia (la vista
-        // inicial, ya calibrada) y el uRadius que le corresponde.
-        // Sirven para escalar uRadius según el zoom cada frame.
+        // Reference camera↔black hole distance (the initial view,
+        // already calibrated) and its corresponding uRadius.
+        // Used to scale uRadius based on zoom every frame.
 
         distortionReferenceDistance =
             camera.position.length();
@@ -656,8 +656,8 @@ if (galaxyEl && cardEl) {
 
 
         // ============================================================
-        // RESIZE — atado al tamaño del contenedor #galaxy, no al
-        // viewport, ya que vive dentro de una card expandible.
+        // RESIZE — tied to the #galaxy container's size, not the
+        // viewport, since it lives inside an expandable card.
         // ============================================================
 
         resizeObserver = new ResizeObserver(resizeToContainer);
@@ -667,7 +667,7 @@ if (galaxyEl && cardEl) {
 
 
     // ============================================================
-    // ANIMACIÓN
+    // ANIMATION
     // ============================================================
 
     function animate() {
@@ -677,23 +677,23 @@ if (galaxyEl && cardEl) {
         rafId = requestAnimationFrame(animate);
 
 
-        // Rotación global de la galaxia
+        // Global galaxy rotation
 
         galaxy.rotation.y += 0.0008;
 
 
-        // Actualizar controles
+        // Update controls
 
         controls.update();
 
 
-        // Actualizar uniform de tiempo del shader de prueba
+        // Update the test shader's time uniform
 
         testPass.uniforms.uTime.value =
             clock.getElapsedTime();
 
 
-        // Proyectar el agujero negro a coordenadas de pantalla (UV)
+        // Project the black hole onto screen coordinates (UV)
 
         projectedBlackHole
             .copy(blackHole.position)
@@ -705,8 +705,8 @@ if (galaxyEl && cardEl) {
         );
 
 
-        // Escalar uRadius según la distancia actual de la cámara,
-        // para que el área de distorsión no crezca/encoja con el zoom
+        // Scale uRadius based on the camera's current distance, so
+        // the distortion area doesn't grow/shrink with zoom
 
         const currentDistance =
             camera.position.length();
@@ -719,16 +719,16 @@ if (galaxyEl && cardEl) {
             Math.min(Math.max(scaledRadius, 0.01), 0.6);
 
 
-        // Renderizar (a través del composer de post-procesado)
+        // Render (through the post-processing composer)
 
         composer.render();
     }
 
 
     // ============================================================
-    // CONTROL DE CICLO DE VIDA: pausa/reanuda el loop según si la
-    // card "Laboratorio" está expandida, para no consumir GPU/CPU
-    // en segundo plano mientras está colapsada.
+    // LIFECYCLE CONTROL: pauses/resumes the loop depending on
+    // whether the "Lab" card is expanded, to avoid consuming
+    // GPU/CPU in the background while it's collapsed.
     // ============================================================
 
     function start() {
@@ -766,26 +766,26 @@ if (galaxyEl && cardEl) {
     new MutationObserver(syncWithCardState)
         .observe(cardEl, { attributes: true, attributeFilter: ["class"] });
 
-    // Cubre el caso de que la card ya esté expandida al cargar
-    // (por ejemplo, navegación directa a un ancla dentro de ella).
+    // Covers the case where the card is already expanded on load
+    // (for example, navigating directly to an anchor inside it).
     syncWithCardState();
 
 
     // ============================================================
-    // PANTALLA COMPLETA — Fullscreen API nativa sobre el wrapper
-    // .lab-galaxy-frame (así el botón sigue visible/clickeable
-    // dentro del elemento en fullscreen).
+    // FULLSCREEN — native Fullscreen API on the .lab-galaxy-frame
+    // wrapper (so the button stays visible/clickable inside the
+    // fullscreen element).
     //
-    // El resize NO se deja solo en manos del ResizeObserver: en
-    // navegadores reales, requestFullscreen() dispara una
-    // transición animada a nivel de SO/ventana, y "fullscreenchange"
-    // puede llegar antes de que el layout final (p.ej. 1920x1080)
-    // esté asentado. Si el ResizeObserver llega a leer un tamaño
-    // intermedio de esa animación y no vuelve a dispararse, el
-    // renderer queda con un tamaño incorrecto (canvas ocupando solo
-    // una fracción de la pantalla). Por eso acá se llama a
-    // resizeToContainer() de forma explícita, con un rAF de margen
-    // para dejar que el layout de la transición termine de asentar.
+    // Resize is NOT left solely in the ResizeObserver's hands: in
+    // real browsers, requestFullscreen() triggers an animated
+    // OS/window-level transition, and "fullscreenchange" can fire
+    // before the final layout (e.g. 1920x1080) has settled. If the
+    // ResizeObserver happens to read an intermediate size from that
+    // animation and doesn't fire again, the renderer ends up with
+    // the wrong size (canvas taking up only a fraction of the
+    // screen). That's why resizeToContainer() is called explicitly
+    // here, with a margin rAF to let the transition's layout finish
+    // settling.
     // ============================================================
 
     const frameEl = galaxyEl.closest(".lab-galaxy-frame");
@@ -825,9 +825,10 @@ if (galaxyEl && cardEl) {
 
             if (!initialized) return;
 
-            // Doble rAF: el primero corre ya en el frame donde el
-            // layout de fullscreen se aplicó, el segundo confirma
-            // que ese layout ya se pintó antes de medir el tamaño.
+            // Double rAF: the first one already runs in the frame
+            // where the fullscreen layout was applied, the second
+            // confirms that layout was actually painted before
+            // measuring the size.
             requestAnimationFrame(() => {
                 requestAnimationFrame(resizeToContainer);
             });

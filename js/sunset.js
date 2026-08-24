@@ -1,13 +1,13 @@
 // ============================================================
-// Experimento "Laboratorio": paisaje de montaña día/noche.
-// Vive dentro de la card "Logos" (#lab-logos-gallery). Igual que
-// galaxy.js con la card "Laboratorio", la construcción del SVG
-// (colinas, nieve, pinos, estrellas) se difiere hasta que la card
-// se expande por primera vez, en vez de correr apenas carga la
-// página. A diferencia de la galaxia, acá no hay ningún loop de
-// render (requestAnimationFrame) que pausar/reanudar: todo es SVG
-// estático + transiciones de CSS disparadas por el click del botón,
-// así que no hace falta un stop().
+// "Lab" experiment: day/night mountain landscape.
+// Lives inside the "Logos" card (#lab-logos-gallery). Same as
+// galaxy.js with the "Lab" card, building the SVG (hills, snow,
+// pines, stars) is deferred until the card is expanded for the
+// first time, instead of running as soon as the page loads.
+// Unlike the galaxy, there's no render loop here
+// (requestAnimationFrame) to pause/resume: it's all static SVG
+// + CSS transitions triggered by the button click, so there's
+// no need for a stop().
 // ============================================================
 
 (function () {
@@ -33,13 +33,13 @@
         return min + Math.random() * (max - min);
     }
 
-    // ---------- Colinas onduladas ----------
-    // Cada capa se define como una lista de puntos (x,y) irregulares
-    // (altura y espaciado variable). En vez de unirlos con líneas rectas,
-    // se traza una curva suave: cada punto interior se usa como control
-    // de una Bézier cuadrática hacia el punto medio con su vecino
-    // siguiente, así la curva nunca toca un punto en un ángulo agudo —
-    // sube y baja en lomas redondeadas.
+    // ---------- Rolling hills ----------
+    // Each layer is defined as a list of irregular (x,y) points
+    // (variable height and spacing). Instead of joining them with
+    // straight lines, a smooth curve is traced: each interior point
+    // is used as the control for a quadratic Bézier toward the
+    // midpoint with its next neighbor, so the curve never touches a
+    // point at a sharp angle — it rises and falls in rounded humps.
     const farHillPoints = [
         { x: 0, y: 385 }, { x: 95, y: 335 }, { x: 180, y: 365 }, { x: 370, y: 255 },
         { x: 455, y: 310 }, { x: 590, y: 340 }, { x: 680, y: 290 }, { x: 830, y: 350 },
@@ -83,15 +83,15 @@
         return { far: farD, mid: midD };
     }
 
-    // ---------- Nieve en las cimas ----------
-    // La nieve NO es una forma nueva adivinando el contorno: es un
-    // duplicado exacto del mismo `d` de la montaña (blanco, superpuesto),
-    // recortado con un <clipPath> elíptico centrado en el pico. Como el
-    // duplicado comparte el trazado real de la colina, el borde superior
-    // de la nieve después del recorte es matemáticamente la misma curva
-    // de la montaña — nunca puede quedar "flotando" separado de la
-    // cresta. Solo el tamaño de la elipse (cuánto baja/ancho es la nieve)
-    // varía al azar entre picos.
+    // ---------- Snow on the peaks ----------
+    // The snow is NOT a new shape guessing at the outline: it's an
+    // exact duplicate of the same mountain `d` (white, overlaid),
+    // clipped with an elliptical <clipPath> centered on the peak.
+    // Since the duplicate shares the hill's actual path, the snow's
+    // upper edge after clipping is mathematically the same curve as
+    // the mountain — it can never end up "floating" apart from the
+    // ridge. Only the ellipse size (how far down/wide the snow is)
+    // varies randomly between peaks.
     let clipIdSeq = 0;
 
     function addSnowCap(mountainD, groupEl, peak, rx, ry) {
@@ -115,8 +115,8 @@
     }
 
     function buildSnowCaps(farD, midD) {
-        // Solo las cimas más altas/prominentes de cada capa llevan nieve.
-        // La más baja de la capa lejana (95,335) queda pelada a propósito.
+        // Only the tallest/most prominent peaks of each layer get snow.
+        // The lowest one in the far layer (95,335) is left bare on purpose.
         const farPeaks = [farHillPoints[3], farHillPoints[6], farHillPoints[8]];
         const midPeaks = [midHillPoints[6]];
 
@@ -129,13 +129,14 @@
         });
     }
 
-    // ---------- Pinos ----------
-    // Cada nivel deja de ser un triángulo liso: el borde de cada lado
-    // (ápice -> esquina de la base) se recorre con un patrón fijo de
-    // "punta de rama / muesca" alternado (siempre la misma estructura,
-    // solo la profundidad de cada muesca varía un poco al azar), lo que
-    // festonea el contorno sin que se vea caótico. El tronco ocupa buena
-    // parte de la altura y queda claramente visible bajo el primer nivel.
+    // ---------- Pines ----------
+    // Each tier stops being a plain triangle: the edge on each side
+    // (apex -> base corner) is traced with a fixed alternating
+    // "branch tip / notch" pattern (always the same structure, only
+    // the depth of each notch varies slightly at random), which
+    // scallops the outline without it looking chaotic. The trunk
+    // takes up a good part of the height and stays clearly visible
+    // under the first tier.
     function scallopedTier(x, apexY, baseY, halfWidth, teeth) {
         const steps = teeth * 2;
         const rightPts = [];
@@ -192,8 +193,8 @@
         }
     }
 
-    // ---------- Estrellas ----------
-    // Solo en la franja de cielo por encima de la cordillera lejana.
+    // ---------- Stars ----------
+    // Only in the strip of sky above the far mountain range.
     function buildStars() {
         const count = 55;
 
@@ -217,14 +218,14 @@
                 circle.style.setProperty('--sunset-twinkle-delay', `-${randomBetween(0, 4).toFixed(1)}s`);
             }
 
-            // Cascada de aparición al pasar a modo noche.
+            // Staggered appearance cascade when switching to night mode.
             circle.style.transitionDelay = `${randomBetween(0, 1.4).toFixed(2)}s`;
 
             starsGroup.appendChild(circle);
         }
     }
 
-    // ---------- Toggle día / noche ----------
+    // ---------- Day / night toggle ----------
     function setNight(isNight) {
         scene.classList.toggle('is-night', isNight);
         toggleBtn.setAttribute('aria-pressed', String(isNight));
@@ -237,9 +238,9 @@
         setNight(isNight);
     });
 
-    // Resincroniza el label (no el estado día/noche en sí) cuando
-    // se cambia de idioma, ya que setNight() es la única fuente de
-    // ese texto y no está marcado con data-i18n en el HTML.
+    // Resyncs the label (not the day/night state itself) when the
+    // language changes, since setNight() is the only source of that
+    // text and it isn't marked with data-i18n in the HTML.
     document.addEventListener('i18n:languagechange', () => {
         setNight(scene.classList.contains('is-night'));
     });
@@ -247,12 +248,11 @@
     setNight(scene.classList.contains('is-night'));
 
     // ============================================================
-    // CONTROL DE CICLO DE VIDA: igual que galaxy.js con la card
-    // "Laboratorio", la construcción se difiere hasta que la card
-    // "Logos" se expande por primera vez. No hay un loop de render
-    // que pausar/reanudar (todo es SVG estático + transiciones de
-    // CSS disparadas por click), así que solo hace falta un start()
-    // que corra una única vez.
+    // LIFECYCLE CONTROL: same as galaxy.js with the "Lab" card,
+    // building it is deferred until the "Logos" card is expanded
+    // for the first time. There's no render loop to pause/resume
+    // (it's all static SVG + CSS transitions triggered by click),
+    // so all that's needed is a start() that runs once.
     // ============================================================
 
     let initialized = false;
@@ -276,6 +276,6 @@
     new MutationObserver(syncWithCardState)
         .observe(cardEl, { attributes: true, attributeFilter: ['class'] });
 
-    // Cubre el caso de que la card ya esté expandida al cargar.
+    // Covers the case where the card is already expanded on load.
     syncWithCardState();
 })();
