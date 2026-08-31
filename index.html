@@ -438,6 +438,216 @@
                                         <span class="sunset-toggle-label">Noche</span>
                                     </button>
                                 </div>
+
+                                <div class="desk-gallery-item">
+                                    <h4 data-i18n="lab.desk.title">Escritorio interactivo</h4>
+                                    <p class="desk-gallery-item-description" data-i18n="lab.desk.description">
+                                        Lámpara con física de péndulo, monitor que enciende un editor
+                                        de código y partículas de polvo en Three.js flotando dentro del haz de luz.
+                                    </p>
+                                    <div class="lab-desk-frame" id="desk-frame">
+                                        <button class="desk-fullscreen-btn" type="button" data-i18n-aria-label="desk.fullscreen_aria_expand" aria-label="Ver escritorio en pantalla completa">
+                                            <svg class="desk-fullscreen-icon-expand" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/></svg>
+                                            <svg class="desk-fullscreen-icon-collapse" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 9h-3a2 2 0 0 1-2-2V4M15 21v-3a2 2 0 0 1 2-2h3M3 15h3a2 2 0 0 1 2 2v3"/></svg>
+                                        </button>
+                                        <div class="desk-curtain-bg"></div>
+                                        <div id="desk-stage">
+
+                                            <!-- ESCRITORIO -->
+                                            <div class="desk-table">
+                                                <div class="desk-table-top">
+                                                    <div class="desk-table-edge"></div>
+                                                </div>
+                                                <div class="desk-table-front"></div>
+                                            </div>
+
+                                            <!-- LAMPARA -->
+                                            <div class="desk-lamp" id="desk-lamp">
+
+                                                <div class="desk-lamp-rig" id="desk-lamp-rig">
+
+                                                    <div class="desk-lamp-cord"></div>
+
+                                                    <svg class="desk-lamp-shade" viewBox="0 0 150 118" preserveAspectRatio="none">
+                                                        <defs>
+                                                            <linearGradient id="deskShadeGrad" x1="0" y1="0" x2="1" y2="0">
+                                                                <stop offset="0%" stop-color="#1c1f28"/>
+                                                                <stop offset="50%" stop-color="#363b4d"/>
+                                                                <stop offset="100%" stop-color="#1c1f28"/>
+                                                            </linearGradient>
+                                                        </defs>
+
+                                                        <path class="desk-shade-cap" d="M 62 0 L 88 0 L 82 10 L 68 10 Z"/>
+                                                        <path class="desk-shade-body" d="M 46 10 C 30 28, 14 55, 4 108 L 146 108 C 136 55, 120 28, 104 10 Z" fill="url(#deskShadeGrad)"/>
+                                                        <ellipse class="desk-shade-rim-inner" cx="75" cy="102" rx="58" ry="5"/>
+                                                        <ellipse class="desk-shade-rim" cx="75" cy="108" rx="71" ry="9"/>
+                                                        <path class="desk-shade-highlight" d="M 26 95 Q 18 55 40 18"/>
+                                                    </svg>
+
+                                                    <div class="desk-lamp-bulb-socket"></div>
+                                                    <div class="desk-lamp-bulb"><div class="desk-lamp-bulb-glow"></div></div>
+
+                                                    <div class="desk-beam-wrap">
+                                                        <div class="desk-light-beam"></div>
+                                                        <canvas id="desk-dust-canvas"></canvas>
+                                                    </div>
+
+                                                    <div class="desk-pull-cord" id="desk-pull-cord">
+                                                        <div class="desk-pull-cord-string"></div>
+                                                        <div class="desk-pull-cord-handle"></div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- MONITOR -->
+                                            <div class="desk-monitor" id="desk-monitor">
+
+                                                <div class="desk-monitor-body">
+                                                    <div class="desk-monitor-screen" id="desk-monitor-screen">
+
+                                                        <div class="desk-editor">
+
+                                                            <div class="desk-editor-topbar">
+                                                                <span class="desk-dot desk-dot-red"></span>
+                                                                <span class="desk-dot desk-dot-yellow"></span>
+                                                                <span class="desk-dot desk-dot-green"></span>
+                                                                <div class="desk-editor-tabs">
+                                                                    <span class="desk-tab desk-tab-active">script.js</span>
+                                                                    <span class="desk-tab">style.css</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="desk-editor-body">
+
+                                                                <div class="desk-editor-sidebar">
+                                                                    <div class="desk-tree-folder">&#9662; src</div>
+                                                                    <div class="desk-tree-file"><span class="desk-file-icon desk-file-html"></span>index.html</div>
+                                                                    <div class="desk-tree-file desk-tree-file-active"><span class="desk-file-icon desk-file-js"></span>script.js</div>
+                                                                    <div class="desk-tree-file"><span class="desk-file-icon desk-file-css"></span>style.css</div>
+                                                                    <div class="desk-tree-file"><span class="desk-file-icon desk-file-json"></span>package.json</div>
+                                                                    <div class="desk-tree-file"><span class="desk-file-icon desk-file-md"></span>README.md</div>
+                                                                </div>
+
+                                                                <div class="desk-editor-code">
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">1</span><span class="desk-tok-kw">const</span><span class="desk-tok-var"> lamp</span><span class="desk-tok-fg"> = </span><span class="desk-tok-fn">new Lamp</span><span class="desk-tok-fg">();</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">2</span><span class="desk-tok-var">lamp</span><span class="desk-tok-fg">.on(</span><span class="desk-tok-str">"pull"</span><span class="desk-tok-fg">, () => {</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">3</span><span class="desk-tok-fg">&nbsp;&nbsp;</span><span class="desk-tok-var">lamp</span><span class="desk-tok-fg">.</span><span class="desk-tok-fn">toggle</span><span class="desk-tok-fg">();</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">4</span><span class="desk-tok-fg">});</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">5</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">6</span><span class="desk-tok-kw">function</span><span class="desk-tok-fn"> render</span><span class="desk-tok-fg">() {</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">7</span><span class="desk-tok-fg">&nbsp;&nbsp;</span><span class="desk-tok-var">scene</span><span class="desk-tok-fg">.</span><span class="desk-tok-fn">update</span><span class="desk-tok-fg">(</span><span class="desk-tok-var">dt</span><span class="desk-tok-fg">);</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">8</span><span class="desk-tok-fg">}</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">9</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">10</span><span class="desk-tok-kw">const</span><span class="desk-tok-var"> dust</span><span class="desk-tok-fg"> = </span><span class="desk-tok-fn">new DustSystem</span><span class="desk-tok-fg">(beam);</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">11</span><span class="desk-tok-var">dust</span><span class="desk-tok-fg">.</span><span class="desk-tok-fn">spawn</span><span class="desk-tok-fg">(42);</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">12</span></div>
+                                                                    <div class="desk-code-line"><span class="desk-tok-num">13</span><span class="desk-tok-fn">animate</span><span class="desk-tok-fg">();</span></div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="desk-editor-terminal">
+                                                                <div class="desk-term-line"><span class="desk-term-prompt">$</span> npm run dev</div>
+                                                                <div class="desk-term-line desk-term-ok">➜ Local: http://localhost:3000</div>
+                                                                <div class="desk-term-line desk-term-dim">ready in 412 ms</div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="desk-monitor-stand-neck"></div>
+                                                    <div class="desk-monitor-stand-base"></div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- MOUSEPAD -->
+                                            <div class="desk-mousepad"></div>
+
+                                            <!-- TECLADO -->
+                                            <div class="desk-keyboard">
+                                                <div class="desk-key-row desk-row-a">
+                                                    <span class="desk-key desk-key-accent">Esc</span><span class="desk-key">Q</span><span class="desk-key">W</span><span class="desk-key">E</span><span class="desk-key">R</span><span class="desk-key">T</span><span class="desk-key">Y</span><span class="desk-key">U</span><span class="desk-key">I</span><span class="desk-key">O</span><span class="desk-key">P</span>
+                                                </div>
+                                                <div class="desk-key-row desk-row-b">
+                                                    <span class="desk-key">A</span><span class="desk-key">S</span><span class="desk-key">D</span><span class="desk-key">F</span><span class="desk-key">G</span><span class="desk-key">H</span><span class="desk-key">J</span><span class="desk-key">K</span><span class="desk-key">L</span><span class="desk-key desk-key-wide desk-key-accent">Enter</span>
+                                                </div>
+                                                <div class="desk-key-row desk-row-c">
+                                                    <span class="desk-key">Z</span><span class="desk-key">X</span><span class="desk-key">C</span><span class="desk-key">V</span><span class="desk-key">B</span><span class="desk-key">N</span><span class="desk-key">M</span>
+                                                </div>
+                                                <div class="desk-key-row desk-row-d">
+                                                    <span class="desk-key desk-key-small">Ctrl</span><span class="desk-key desk-key-small">Alt</span>
+                                                    <span class="desk-key desk-key-spacebar"></span>
+                                                    <span class="desk-key desk-key-small">Alt</span><span class="desk-key desk-key-small">Ctrl</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- MOUSE -->
+                                            <div class="desk-mouse">
+                                                <div class="desk-mouse-wheel"></div>
+                                                <div class="desk-mouse-divider"></div>
+                                            </div>
+
+                                            <!-- LIBRETA -->
+                                            <div class="desk-notebook">
+
+                                                <div class="desk-notebook-page desk-page-left">
+                                                    <svg viewBox="0 0 140 170">
+                                                        <rect class="desk-checkbox" x="14" y="22" width="13" height="13" rx="2"/>
+                                                        <path class="desk-check" d="M 16 28 L 19 31 L 25 24"/>
+                                                        <path class="desk-scribble" d="M 35 28 q 18 -6 40 0 t 44 -1"/>
+
+                                                        <rect class="desk-checkbox" x="14" y="56" width="13" height="13" rx="2"/>
+                                                        <path class="desk-check" d="M 16 62 L 19 65 L 25 58"/>
+                                                        <path class="desk-scribble" d="M 35 62 q 20 5 44 -1 t 48 1"/>
+
+                                                        <rect class="desk-checkbox" x="14" y="90" width="13" height="13" rx="2"/>
+                                                        <path class="desk-scribble" d="M 35 96 q 16 -4 36 0 t 40 -2"/>
+
+                                                        <rect class="desk-checkbox" x="14" y="124" width="13" height="13" rx="2"/>
+                                                        <path class="desk-scribble desk-scribble-short" d="M 35 130 q 18 5 40 -1"/>
+                                                    </svg>
+                                                </div>
+
+                                                <div class="desk-notebook-spine">
+                                                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                                                </div>
+
+                                                <div class="desk-notebook-page desk-page-right">
+                                                    <svg viewBox="0 0 140 170">
+                                                        <path class="desk-scribble" d="M 14 22 q 20 -6 46 0 t 58 -2"/>
+                                                        <path class="desk-scribble" d="M 14 40 q 22 5 52 -1 t 52 1"/>
+                                                        <path class="desk-scribble desk-scribble-short" d="M 14 58 q 18 -4 38 0"/>
+
+                                                        <path class="desk-scribble" d="M 14 94 q 20 -6 46 0 t 58 -2"/>
+                                                        <path class="desk-scribble" d="M 14 112 q 22 5 52 -1 t 52 1"/>
+                                                        <path class="desk-scribble desk-scribble-short" d="M 14 130 q 18 -4 38 0"/>
+                                                    </svg>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- TAZA DE CAFE -->
+                                            <div class="desk-cup-wrap">
+                                                <svg class="desk-steam" viewBox="0 0 100 130">
+                                                    <path class="desk-steam-path desk-steam-s1" d="M 30 120 C 20 95, 45 85, 32 60 C 22 40, 42 30, 34 10"/>
+                                                    <path class="desk-steam-path desk-steam-s2" d="M 55 120 C 45 100, 68 88, 56 65 C 47 46, 65 34, 58 12"/>
+                                                    <path class="desk-steam-path desk-steam-s3" d="M 72 120 C 64 102, 84 90, 74 68 C 66 50, 82 38, 76 16"/>
+                                                </svg>
+                                                <div class="desk-cup">
+                                                    <div class="desk-cup-handle"></div>
+                                                    <div class="desk-cup-liquid"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- CHARCO DE LUZ -->
+                                            <div id="desk-light-pool" class="desk-light-pool"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -652,6 +862,7 @@
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 <script type="module" src="js/galaxy.js"></script>
+<script type="module" src="js/desk.js"></script>
 <script src="js/sunset.js"></script>
 </body>
 </html>

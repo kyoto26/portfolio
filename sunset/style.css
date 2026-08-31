@@ -1,0 +1,248 @@
+:root {
+    --brand-black: #050505;
+    --brand-violet: #9d4edd;
+    --brand-violet-glow: #c77dff;
+    --brand-violet-core: #f3e8ff;
+    --transition-duration: 3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-black);
+    color: #ffffff;
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    padding: 32px 16px;
+}
+
+.page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.scene-card {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.scene {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 600;
+}
+
+/* ---------- Cielo ---------- */
+
+.sky-stop {
+    transition: stop-color var(--transition-duration) ease;
+}
+
+.sky-stop-1 { stop-color: #ffd36e; }
+.sky-stop-2 { stop-color: #ff9a56; }
+.sky-stop-3 { stop-color: #ff6f91; }
+.sky-stop-4 { stop-color: #c94b7c; }
+
+.scene.is-night .sky-stop-1 { stop-color: #060215; }
+.scene.is-night .sky-stop-2 { stop-color: #150a2e; }
+.scene.is-night .sky-stop-3 { stop-color: #2d1150; }
+.scene.is-night .sky-stop-4 { stop-color: #1a0b2e; }
+
+/* ---------- Nubes ---------- */
+
+.cloud {
+    fill: #ffb199;
+    opacity: 0.55;
+    transition: fill var(--transition-duration) ease, opacity var(--transition-duration) ease;
+}
+
+.scene.is-night .cloud {
+    fill: #3a2a55;
+    opacity: 0.28;
+}
+
+/* ---------- Montañas ---------- */
+
+.haze-layer {
+    opacity: 0.88;
+}
+
+.mountain {
+    transition: fill var(--transition-duration) ease;
+}
+
+.mountain-far { fill: #f2a6b3; }
+.mountain-mid { fill: #d9647d; }
+.mountain-near { fill: #7a3b52; }
+
+.scene.is-night .mountain-far { fill: #352a52; }
+.scene.is-night .mountain-mid { fill: #211636; }
+.scene.is-night .mountain-near { fill: #130c1f; }
+
+/* Nieve solo en los picos más altos/prominentes (por encima de la línea de árboles). */
+.snow-cap {
+    fill: #fff6ea;
+    opacity: 0.92;
+    transition: fill var(--transition-duration) ease;
+}
+
+.scene.is-night .snow-cap {
+    fill: #d7dbf2;
+}
+
+/* ---------- Sol / Luna ---------- */
+
+.celestial-body,
+.celestial-glow {
+    transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
+/*
+ * Sol y luna comparten las dos mismas posiciones (arriba del grupo
+ * .celestial en translate(600,350)):
+ *   - "alto":     translate(350px, -195px) -> arriba a la derecha, visible.
+ *   - "escondido": translate(0, 0)          -> justo en el pico de la
+ *     cordillera media, donde su propio dibujo lo tapa.
+ * De día el sol está arriba y la luna escondida; al pasar a noche
+ * intercambian posición: el sol desciende y se esconde tras el pico,
+ * la luna sube desde ahí hasta el punto alto.
+ */
+
+.celestial-sun,
+.celestial-glow-sun {
+    opacity: 1;
+    transform: translate(350px, -195px);
+    transition: opacity var(--transition-duration) ease,
+                transform var(--transition-duration) cubic-bezier(0.64, 0, 0.78, 0);
+}
+
+.celestial-moon,
+.celestial-glow-moon {
+    opacity: 0;
+    transform: translate(0, 0);
+    transition: opacity var(--transition-duration) ease,
+                transform var(--transition-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scene.is-night .celestial-sun,
+.scene.is-night .celestial-glow-sun {
+    opacity: 0;
+    /* Se esconde descendiendo detrás del pico de la cordillera media. */
+    transform: translate(0, 0);
+}
+
+.scene.is-night .celestial-moon,
+.scene.is-night .celestial-glow-moon {
+    opacity: 1;
+    /* Asciende desde detrás del pico hacia arriba-derecha del cielo. */
+    transform: translate(350px, -195px);
+}
+
+.crater {
+    fill: #b9aede;
+    opacity: 0.55;
+}
+
+/* ---------- Pinos ---------- */
+
+.pines path {
+    fill: #170f16;
+    transition: fill var(--transition-duration) ease;
+}
+
+.scene.is-night .pines path {
+    fill: #0a060c;
+}
+
+/* ---------- Estrellas ---------- */
+
+.star {
+    fill: #ffffff;
+    opacity: 0;
+    transition: opacity 2.2s ease;
+}
+
+.scene.is-night .star {
+    opacity: var(--star-opacity, 0.7);
+}
+
+.star-twinkle {
+    animation: none;
+}
+
+.scene.is-night .star-twinkle {
+    animation: star-twinkle ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+    animation-duration: var(--twinkle-duration, 3s);
+}
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: var(--star-opacity, 0.7); }
+    50% { opacity: 0.15; }
+}
+
+/* ---------- Botón ---------- */
+
+.toggle-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(5, 5, 5, 0.45);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+}
+
+.toggle-btn:hover,
+.toggle-btn:focus-visible {
+    border-color: var(--brand-violet-glow);
+    background: rgba(20, 10, 30, 0.6);
+}
+
+.toggle-btn:active {
+    transform: scale(0.96);
+}
+
+.toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* ---------- Accesibilidad ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-duration: 0.01s;
+    }
+
+    .star {
+        transition: opacity 0.01s linear;
+    }
+
+    .scene.is-night .star-twinkle {
+        animation: none;
+    }
+}
